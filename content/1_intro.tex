@@ -1,15 +1,28 @@
-\chapter{Introduction}\label{ch:intro}
+\chapter{Einf\"uhrung}\label{ch:intro}
 
-You may have read about similar things in \cite{Goodliffe2007}.
-You can also write footnotes.\footnote{Footnotes will be positioned automatically.}
-% \blindtext
 
-% \blindtext
+% the rise of cloud computing 
+% Wandel von monolithischen Architekturen hin zu Microservices
+% anfangs eine Software pro Server, dann VMs, jetzt Container 
+% Schnelllebigkeit und agile Softwareentwicklung
+% Hosting-Umgebung als Wegwerfware 
+% zunehmende Herausforderungen 
+% Komplexität als Hürde 
+% DevOps Kultur 
+% Notwendigkeit, Auslieferung simpler und schneller zu gestalten 
 
-\section{This is an Important Section}
+% Traditionally, setting up a cluster of computers, for example, an MPI cluster, is a challenging task which requires system administrators to spend considerable time to configure the system and network.\footnote{Distributed MPI cluster with Docker Swarm mode}
 
-It is possible to reference glossary entries as \gls{library} as an example.
-% \blindtext
+% in cloud native architectures, applications are broken down into small components, or services, each placed in a container. You may have heard of them referred to as microservices. Instead of having one big app (often known as a 'monolith') you now have dozens or even hundreds of (micro)services. And each of these services needs resources, monitoring, and fixing if a problem occurs. While it may be feasible to do all those things manually for a single service, you'll need automated processes when dealing with multiple services, each with its own containers.\footnote{Cloud Native Landscape Guide}
 
-\subsection{And an even more important subsection}
-% \blindtext
+% Until recently, one server used to be dedicated to only one service. That changed with the arrival of virtualization. One physical server can serve multiple virtual instances that are transferable to other physical devices without loss of functionality.\footnote{Overview of Docker container orchestration tools}
+
+% You may have read about similar things in \cite{Goodliffe2007}.
+
+Die Softwareentwicklung hat in den letzten Jahrzehnten einen tiefgreifenden Wandel durchlaufen. Während Anwendungen früher monolithisch aufgebaut und auf dedizierten Servern betrieben wurden, sind moderne Architekturen zunehmend auf Skalierbarkeit, Flexibilität und Geschwindigkeit ausgelegt. Dies hat zur Verbreitung von Microservices geführt, bei denen große Anwendungen in viele kleine, voneinander unabhängige Dienste aufgeteilt werden. Diese Entwicklung wird durch den Einsatz von Containern vorangetrieben, die eine einheitliche und portable Laufzeitumgebung für Anwendungen schaffen. Doch mit der steigenden Anzahl an Containern und Microservices wächst auch die Komplexität der Infrastruktur, die verwaltet werden muss.
+
+Traditionell war die Verwaltung von IT-Infrastrukturen die Aufgabe von spezialisierten Systemadministratoren. Sie waren für das Aufsetzen, Konfigurieren und Warten von Servern verantwortlich, beispielsweise in Cluster-Umgebungen für Hochverfügbarkeit oder rechenintensive Anwendungen. Diese Prozesse waren oft zeitaufwendig und erforderten detailliertes Fachwissen über Netzwerke, Betriebssysteme und Hardware. In einer Welt, in der Software immer schneller entwickelt und ausgerollt werden muss, sind solche manuellen Prozesse jedoch nicht mehr tragbar. Die klassische Trennung zwischen Entwicklerinnen\footnote{Der besseren Lesbarkeit halber wird das generische Femininum verwendet, aber es sind selbstverst\"andlich Personen jeden Geschlechts gemeint.}, die Code schreiben, und Operations-Teams, die die Infrastruktur betreiben, stößt zunehmend an ihre Grenzen.
+
+Daraus entstand die DevOps-Kultur, die darauf abzielt, die Grenzen zwischen Entwicklung und Betrieb aufzulösen. Entwicklerinnen sollen nicht nur Code schreiben, sondern auch für den Betrieb ihrer Anwendungen verantwortlich sein. Das setzt voraus, dass die Infrastruktur so weit abstrahiert und automatisiert wird, dass sie ohne tiefgehende Systemadministrationskenntnisse verwaltet werden kann. Anstelle komplexer manueller Prozesse müssen einfache, wiederholbare und automatisierbare Lösungen treten, die den Deployment- und Wartungsaufwand minimieren.
+
+Diese Transformation bringt jedoch auch Herausforderungen mit sich. Die zunehmende Anzahl an verteilten Diensten erfordert effiziente Mechanismen zur Orchestrierung und Verwaltung von Containern. Docker Swarm bietet hierbei eine Lösung speziell für das Clustermanagement von Docker Containern \"uber mehrere Endknoten hinweg. In dieser Arbeit wird die Funktionsweise dieser Software erläutert und mit dem Marktf\"uhrer Kubernetes verglichen. Zudem werden die Herausforderungen bei der Container-Orchestrierung betrachtet und gezeigt, wie Docker Swarm zur Vereinfachung der Bereitstellung, Skalierung und Verwaltung verteilter Anwendungen beiträgt.

@@ -1,0 +1,17 @@
+version: '3.8'
+services:
+  frontend:
+    image: harbor.informatik.fh-nuernberg.de/grammar/grammar-workbench-frontend:latest
+    networks:
+      - traefik_proxy
+    deploy:
+      replicas: 1
+      update_config:
+        parallelism: 1
+        delay: 10s
+      restart_policy:
+        condition: on-failure
+
+networks:
+  traefik_proxy:
+    external: true

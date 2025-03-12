@@ -3,7 +3,7 @@
     a4paper,
     sfdefaults=false,
     toc=chapterentrywithdots,
-    twoside,openright,
+    oneside,openany,
     titlepage,
     parskip=half,
     headings=normal,  % reduces heading size
@@ -11,14 +11,14 @@
     bibliography=totoc,
     index=totoc,
     captions=tableheading,  % caption below table
-    chapterprefix,
+    chapterprefix=false,
     listof=flat,
     final
 ]{scrbook}
 
 
 % details about your thesis
-\newcommand{\titel}{Docker Swarm}
+\newcommand{\titel}{Docker Swarm Mode}
 \newcommand{\artderarbeit}{Hausarbeit f\"ur ``Cloud Native Computing'' \\}  % {Bachelorarbeit,Masterarbeit}
 \newcommand{\autor}{Luise Hartdegen}
 \newcommand{\studiengang}{Medieninformatik}  % {Informatik,Wirtschaftsinformatik,Medieninformatik}
@@ -31,7 +31,6 @@
 \newcommand{\keywords}{-}
 \newcommand{\semester}{Wintersemester 2024/2025}
 \newcommand{\abgabedatum}{TODO}
- 
 
 % custom head and foot
 \usepackage[automark]{scrlayer-scrpage}
@@ -92,6 +91,7 @@
     linktocpage=true,
 ]{hyperref}
 
+
 % configure your listings style
 \usepackage{listings}
 \lstset{
@@ -101,7 +101,9 @@
 	showstringspaces=true,
 	numbers=left,
 	numberstyle=\small,
-	breakautoindent=true
+	breakautoindent=true,
+  basicstyle=\small,
+  breaklines=true
 }
 
 % page setup
@@ -125,10 +127,6 @@
 \newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
 
 
-% load glossary entries
-\makenoidxglossaries
-\loadglsentries{glossary}
-
 \begin{document}
 
 \setcounter{secnumdepth}{3}  % numerate subsections
@@ -148,32 +146,32 @@
 
 \mainmatter
 \include{content/1_intro}
-\include{content/2_data}
-\include{content/3_method}
-\include{content/4_experiments}
-\include{content/5_outlook}
+\include{content/2_technology}
+\include{content/3_dockerswarm}
+\include{content/4_comparison}
+% \include{content/5_usecase}
 \include{content/6_summary}
 
 \backmatter
-% \listoffigures
+\listoffigures
 % \cleardoublepage
 
 % \listoftables
 % \cleardoublepage
 
-% \renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
-% \lstlistoflistings
+\renewcommand{\lstlistlistingname}{Codebeispiele}  % change for German thesis
+\lstlistoflistings%
 % \cleardoublepage
 
 % \bibliographystyle{wmaainf}
 % \bibliography{refs}
 
 \nocite{*}
-\bibliographystyle{ieeetran}
+\bibliographystyle{IEEEtran}
 \bibliography{refs}
 
 % remove if not needed
-% \appendix
+\appendix
 \renewcommand{\appendixname}{Anhang}
 \include{content/a1_supplemental}
 
