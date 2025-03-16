@@ -1,3 +1,40 @@
-\chapter{Data}\label{ch:data}
+\chapter{Beschreibung}\label{ch:data}
 
-\Blindtext
+\section{Problembeschreibung}
+% *worst version possible*
+
+Der Arbeitsprozess ein 3D-Modell zu erstellen und mittels eines 3D-Druckers zu fertigen, beinhaltet einige Arbeitsschritte, die sich h\"aufig wiederholen. 
+Der \"ubliche Ablauf ist dabei, die 3D-Datei in einer Software wie Autodesk Fusion zu erstellen und als STL- oder 3MF-Datei zu exportieren.
+Dann wird diese Datei in eine Slicer-Software importiert, wo die Druckparameter festgelegt werden, bspw.\ die Filamente und die Fl\"ache des Objekts, die auf dem Druckbett aufliegt. 
+Da der Prozess oft iterativ abl\"auft, m\"ussen diese Druckparameter nach jedem Import des leicht ver\"anderten Modells erneut festgelegt werden, was zeitaufwendig und umst\"andlich ist.
+
+betroffene Personen(kreise), Szenarien\dots
+
+\section{Forschungsfrage}
+Im Rahmen der Bachelorarbeit soll untersucht werden, ob es machbar ist, beim Exportieren der 3MF-Datei sogenannte Print Hints in der Datei zu hinterlegen und diese im Orca Slicer auszulesen und automatisch zu verarbeiten, um die oben beschriebenen Arbeitsabläufe effizienter zu gestalten.
+
+\section{Lösungsansatz}
+Der aktuell angedachte Ansatz umfasst mehrere Komponenten. 
+In erster Linie soll der Import im Orca Slicer dahingehend \"uberarbeitet werden, dass die Materialien aus der 3MF-Datei ausgelesen werden und automatisch bestimmte Filament-Presets bestimmten Farben zugeordnet werden. % genauer ausf\"uhren + how? plugin? erweiterung des codes? 
+Des Weiteren soll es m\"oglich sein, die Druckfl\"ache direkt in Autodesk Fusion zu definieren. 
+Daf\"ur ist ggf.\ ein Plugin f\"ur Autodesk Fusion n\"otig sowie eine \"Anderung des Dateiformats, da derartige Flags bisher nicht vorgesehen sind.
+
+wie soll das Problem gelöst werden? geänderte Arbeitsabläufe, Beschreibung technischer Systeme
+
+\section{Forschungsmethodik}
+Da es sich hier um eine Machbarkeitsstudie handelt, wird die Methodik in erster Linie Prototypen umfassen. 
+Der Wichtigste ist dabei der ge\"anderte Slicer oder alternativ ein Plugin f\"ur diesen. 
+Sekund\"ar kommt das ge\"anderte Dateiformat dazu sowie ggf.\ ein Plugin f\"ur Autodesk Fusion.
+Optional k\"onnen noch Nutzerbefragungen durchgef\"uhrt werden, um die Usability zu pr\"ufen.
+
+wie wird die Forschungsfrage beantwortet? Messungen / Benchmarks, Nutzerbefragungen, analytische Methoden, Prototyp\dots
+
+\section{Forschungsstand}
+Bisherige Erkenntnisse: 
+\begin{itemize}
+    \item die Materialien werden als Hexcode-Farben im 3MF-Dateiformat gespeichert
+    \item das 3MF-Dateiformat speichert die 3D-Modelle in gut lesbarem und leicht zu ver\"anderndem XML-Format ab 
+    \item 3MF-Dateien k\"onnen problemlos im Orca Slicer eingelesen werden, wenn manuell Flags hinzugef\"ugt wurden
+\end{itemize}
+
+bisherige Arbeiten, wie ist der aktuelle Stand; welche relevanten Ver\"offentlichungen gibt es schon? 

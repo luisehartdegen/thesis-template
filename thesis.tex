@@ -3,7 +3,7 @@
     a4paper,
     sfdefaults=false,
     toc=chapterentrywithdots,
-    twoside,openright,
+    oneside,openany,
     titlepage,
     parskip=half,
     headings=normal,  % reduces heading size
@@ -11,7 +11,7 @@
     bibliography=totoc,
     index=totoc,
     captions=tableheading,  % caption below table
-    chapterprefix,
+    chapterprefix=false,
     listof=flat,
     final
 ]{scrbook}
@@ -143,7 +143,7 @@
 % https://intern.ohmportal.de/fileadmin/Public_Docs/SB/SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf
 %\includepdf{SB_0009_FO_Pruefungsrechtliche_Erklaerung_und_Erklaerung_zur_Veroeffentlichung_der_Abschlussarbeit_public.pdf}\cleardoublepage
 
-\include{content/0_abstract}\cleardoublepage
+% \include{content/0_abstract}\cleardoublepage
 
 \tableofcontents
 
@@ -151,28 +151,28 @@
 \include{content/1_intro}
 \include{content/2_data}
 \include{content/3_method}
-\include{content/4_experiments}
-\include{content/5_outlook}
-\include{content/6_summary}
+% \include{content/4_experiments}
+% \include{content/5_outlook}
+% \include{content/6_summary}
 
 % remove if not needed
 \appendix
-\include{content/a1_supplemental}
+% \include{content/a1_supplemental}
 
-\backmatter
-\listoffigures
-\cleardoublepage
+% \backmatter
+% \listoffigures
+% \cleardoublepage
 
-\listoftables
-\cleardoublepage
+% \listoftables
+% \cleardoublepage
 
-\renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
-\lstlistoflistings
-\cleardoublepage
+% \renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
+% \lstlistoflistings
+% \cleardoublepage
 
-\bibliographystyle{wmaainf}
-\bibliography{refs}
+% \bibliographystyle{wmaainf}
+% \bibliography{refs}
 
-\printnoidxglossaries
+% \printnoidxglossaries
 
 \end{document}
