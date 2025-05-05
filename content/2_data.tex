@@ -1,40 +1,41 @@
-\chapter{Beschreibung}\label{ch:data}
+\chapter{Description}\label{ch:data} 
 
-\section{Problembeschreibung}
-% *worst version possible*
+\section{Definition of Problem} 
 
-Der Arbeitsprozess ein 3D-Modell zu erstellen und mittels eines 3D-Druckers zu fertigen, beinhaltet einige Arbeitsschritte, die sich h\"aufig wiederholen. 
-Der \"ubliche Ablauf ist dabei, die 3D-Datei in einer Software wie Autodesk Fusion zu erstellen und als STL- oder 3MF-Datei zu exportieren.
-Dann wird diese Datei in eine Slicer-Software importiert, wo die Druckparameter festgelegt werden, bspw.\ die Filamente und die Fl\"ache des Objekts, die auf dem Druckbett aufliegt. 
-Da der Prozess oft iterativ abl\"auft, m\"ussen diese Druckparameter nach jedem Import des leicht ver\"anderten Modells erneut festgelegt werden, was zeitaufwendig und umst\"andlich ist.
+When designing and printing 3D models, there are a few steps being repeated over and over again. 
+Usually the process consists of creating the 3D model in a CAD software like Autodesk Fusion and exporting it as an STL or 3MF file.
+Next, this file is imported to a slicer software, where the printing parameters are being set. 
+Since these parameters are not part of the exported file, the user has to potentially set them each time following modifications of the 3D model and reimporting it to the slicer. 
+The printing parameters not only include the filaments, but also the surface that the object is placed on and possibly whether certain objects are to be handled as modifiers to the main 3D model.
 
-betroffene Personen(kreise), Szenarien\dots
+\section{Research topic}
 
-\section{Forschungsfrage}
-Im Rahmen der Bachelorarbeit soll untersucht werden, ob es machbar ist, beim Exportieren der 3MF-Datei sogenannte Print Hints in der Datei zu hinterlegen und diese im Orca Slicer auszulesen und automatisch zu verarbeiten, um die oben beschriebenen Arbeitsabläufe effizienter zu gestalten.
+The goal of this bachelor thesis is to prove whether it is possible to export `print hints' within the 3MF file from Autodesk Fusion and have the slicer automatically parse them to make the working process described above more efficient and avoid repetitious manual steps.
 
-\section{Lösungsansatz}
-Der aktuell angedachte Ansatz umfasst mehrere Komponenten. 
-In erster Linie soll der Import im Orca Slicer dahingehend \"uberarbeitet werden, dass die Materialien aus der 3MF-Datei ausgelesen werden und automatisch bestimmte Filament-Presets bestimmten Farben zugeordnet werden. % genauer ausf\"uhren + how? plugin? erweiterung des codes? 
-Des Weiteren soll es m\"oglich sein, die Druckfl\"ache direkt in Autodesk Fusion zu definieren. 
-Daf\"ur ist ggf.\ ein Plugin f\"ur Autodesk Fusion n\"otig sowie eine \"Anderung des Dateiformats, da derartige Flags bisher nicht vorgesehen sind.
+\section{Solution approach }
 
-wie soll das Problem gelöst werden? geänderte Arbeitsabläufe, Beschreibung technischer Systeme
+Based on the current knowledge, the solution will consist of multiple parts. 
+\begin{enumerate}
+    \item It shall be possible to add print hints within Autodesk Fusion. Since this software is not open source, the only way to add this functionality would be as a script or plugin. Autodesk Fusion provides a comprehensive amount of methods within their API for developers to use. 
+    \item The slicer shall then be able to detect the different materials from exported 3MF files and automatically map them to filament presets, as well as automatically handle print hints.  
+    \item Furthermore it needs to be determined, whether the 3MF standard would need to be augmented or if the print hints can be written to the xml data without changing the file standard. 
+\end{enumerate}
 
-\section{Forschungsmethodik}
-Da es sich hier um eine Machbarkeitsstudie handelt, wird die Methodik in erster Linie Prototypen umfassen. 
-Der Wichtigste ist dabei der ge\"anderte Slicer oder alternativ ein Plugin f\"ur diesen. 
-Sekund\"ar kommt das ge\"anderte Dateiformat dazu sowie ggf.\ ein Plugin f\"ur Autodesk Fusion.
-Optional k\"onnen noch Nutzerbefragungen durchgef\"uhrt werden, um die Usability zu pr\"ufen.
+\section{Research methods}
 
-wie wird die Forschungsfrage beantwortet? Messungen / Benchmarks, Nutzerbefragungen, analytische Methoden, Prototyp\dots
+Since the goal is a proof of concept, the methods used will mainly be to create software prototypes. 
+Optionally it might be useful to conduct user surveys as to the usability of the created prototypes. 
+Accompanying these, the written part shall illustrate the design decisions as well as any other important steps, serve as documentation and give the reader foundational knowledge regarding the design process for 3D models and the working of slicer software. 
 
-\section{Forschungsstand}
-Bisherige Erkenntnisse: 
+\section{Current state of research}
+
+Insights so far: 
 \begin{itemize}
-    \item die Materialien werden als Hexcode-Farben im 3MF-Dateiformat gespeichert
-    \item das 3MF-Dateiformat speichert die 3D-Modelle in gut lesbarem und leicht zu ver\"anderndem XML-Format ab 
-    \item 3MF-Dateien k\"onnen problemlos im Orca Slicer eingelesen werden, wenn manuell Flags hinzugef\"ugt wurden
+    \item Fusion exports materials as hexcode colours to the 3MF file where they are being referenced in each 3D object but not imported by the OrcaSlicer yet
+    \item 3MF saves 3D models in easily human-readable XML format which is therefore easily edited 
+    \item OrcaSlicer doesn't throw any errors when importing manually edited 3MF files 
+    \item Fusion provides a comprehensive API to use for plugins or scripts 
 \end{itemize}
 
-bisherige Arbeiten, wie ist der aktuelle Stand; welche relevanten Ver\"offentlichungen gibt es schon? 
+The most important literature will certainly be Fusion's API documentation, as well as the documention of the OrcaSlicer and possibly the predecessors SliC3r, Bambu Studio and PrusaSlicer as far as available and up to date. 
+Further literature is yet to be researched. 

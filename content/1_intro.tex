@@ -1,18 +1,10 @@
-\chapter{Einführung}\label{ch:intro}
+\chapter{Introduction}\label{ch:intro}
 
-Motivation + Kurzfassung des restlichen Dokuments
+Despite automation and optimization having been a prominent topic in the software developer community for years, there still are a few workflows in 3D printing that have the potential to become even more efficient and user friendly. 
+One of these is the process of importing 3MF files containing objects with multiple materials or modifiers to a slicer to create the print file.
+Oftentimes designing a 3D model for printing is an iterative process. 
+The designer tweaks the model, prints it on their 3D printer, checks for improvement and repeats the same steps again. 
+When doing this, the slighly altered models are being imported to the slicer again and again, meaning the designer has to set materials or e. g. mark a certain object as a support blocker repeatedly following each slicer import.
 
-
-% You may have read about similar things in \cite{Goodliffe2007}.
-% You can also write footnotes.\footnote{Footnotes will be positioned automatically.}
-% \blindtext
-
-% \blindtext
-
-% \section{This is an Important Section}
-
-% It is possible to reference glossary entries as \gls{library} as an example.
-% \blindtext
-
-% \subsection{And an even more important subsection}
-% \blindtext
+The goal of this thesis is to prove the concept of so called print hints as a way to improve the workflow. 
+The approach as currently planned contains on the one hand an improved export function within the CAD software \emph{Autodesk Fusion} to mark certain objects as modifiers and on the other hand automatic handling of materials and print hints within the slicer software called \emph{OrcaSlicer}. 
