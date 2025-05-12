@@ -2,30 +2,38 @@
 
 \section{Definition of Problem} 
 
-When designing and printing 3D models, there are a few steps being repeated over and over again. 
-Usually the process consists of creating the 3D model in a CAD software like Autodesk Fusion and exporting it as an STL or 3MF file.
-Next, this file is imported to a slicer software, where the printing parameters are being set. 
-Since these parameters are not part of the exported file, the user has to potentially set them each time following modifications of the 3D model and reimporting it to the slicer. 
-The printing parameters not only include the filaments, but also the surface that the object is placed on and possibly whether certain objects are to be handled as modifiers to the main 3D model.
+As mentioned above, the process of designing and printing 3D models either for private purposes or as prototyping in a professional context frequently involves repetitive steps, in particular when importing the 3D model to the slicer software.
+Each time the model is imported, the user has to manually set the printing parameters. 
+In some cases, this can be as easy as selecting the filament and continuing with the standard presets but more often, one or several of the following steps are involved as well: 
+\begin{itemize}
+    \item assigning different filaments to different model parts
+    \item setting support blockers or enhancers 
+    \item setting modifiers, \eg for perimeters
+\end{itemize}
 
-\section{Research topic}
+Such repetitive tasks not only increase the cognitive workload but also reduce process efficiency, potentially leading to higher error rates and waste of resources.
 
-The goal of this bachelor thesis is to prove whether it is possible to export `print hints' within the 3MF file from Autodesk Fusion and have the slicer automatically parse them to make the working process described above more efficient and avoid repetitious manual steps.
+\section{Research topic: proof of concept}
 
-\section{Solution approach }
+The bachelor thesis aims to prove the feasibility of exporting print hints within the 3MF file from \emph{Autodesk Fusion} and have the slicer automatically parse them to automate the workflow, reducing the need for repetitive manual steps.
+
+\section{Solution approach}
 
 Based on the current knowledge, the solution will consist of multiple parts. 
 \begin{enumerate}
-    \item It shall be possible to add print hints within Autodesk Fusion. Since this software is not open source, the only way to add this functionality would be as a script or plugin. Autodesk Fusion provides a comprehensive amount of methods within their API for developers to use. 
-    \item The slicer shall then be able to detect the different materials from exported 3MF files and automatically map them to filament presets, as well as automatically handle print hints.  
-    \item Furthermore it needs to be determined, whether the 3MF standard would need to be augmented or if the print hints can be written to the xml data without changing the file standard. 
+    \item It should be possible to add print hints via Autodesk Fusion's user interface. Since the software is not open source, the only way to add this functionality would be as a script or plugin. Autodesk Fusion provides a comprehensive amount of methods within their API for developers to use. 
+    \item The slicer should then be able to detect the different materials from exported 3MF files and automatically map them to filament presets, as well as automatically handle print hints. As mentioned before, \emph{OrcaSlicer} is open source, therefore the changes can be directly integrated into a forked repository. 
+    \item Furthermore it needs to be determined whether print hints can be written to the 3MF file's XML data containing the 3D models without changing the file's standard.
 \end{enumerate}
 
 \section{Research methods}
 
-Since the goal is a proof of concept, the methods used will mainly be to create software prototypes. 
-Optionally it might be useful to conduct user surveys as to the usability of the created prototypes. 
-Accompanying these, the written part shall illustrate the design decisions as well as any other important steps, serve as documentation and give the reader foundational knowledge regarding the design process for 3D models and the working of slicer software. 
+Since the goal is a proof of concept, the methods used will mainly be to create software prototypes.
+Additionally, the written part will illustrate the design decisions as well as any other important steps, serve as documentation and give the reader foundational knowledge regarding the design process for 3D models and the working of slicer software. 
+
+Supporting both parts, literature research will be necessary. 
+The most important literature regarding the implementation will be Autodesk's Fusion API documentation\cite{autodesk_inc_fusion_2025}, the documention of the OrcaSlicer\cite{softfever_orcaslicerdoc_nodate} as far as available and up to date, and 3MF Consortium's file specifications\cite{3mf_consortium_3mf_nodate}. 
+Works on human-computer interaction, such as~\cite{jacko_human_2012}, as well as studies on 3D printing and the maker community, like~\cite{walter-herrmann_fablab_2014} and~\cite{hudson_understanding_2016}, will provide a deeper understanding and context for the problem at hand. 
 
 \section{Current state of research}
 
@@ -34,8 +42,5 @@ Insights so far:
     \item Fusion exports materials as hexcode colours to the 3MF file where they are being referenced in each 3D object but not imported by the OrcaSlicer yet
     \item 3MF saves 3D models in easily human-readable XML format which is therefore easily edited 
     \item OrcaSlicer doesn't throw any errors when importing manually edited 3MF files 
-    \item Fusion provides a comprehensive API to use for plugins or scripts 
+    \item Fusion provides a comprehensive API enabling the development of plugins or scripts for extended functionality 
 \end{itemize}
-
-The most important literature will certainly be Fusion's API documentation, as well as the documention of the OrcaSlicer and possibly the predecessors SliC3r, Bambu Studio and PrusaSlicer as far as available and up to date. 
-Further literature is yet to be researched. 

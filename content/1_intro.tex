@@ -1,10 +1,14 @@
 \chapter{Introduction}\label{ch:intro}
 
-Despite automation and optimization having been a prominent topic in the software developer community for years, there still are a few workflows in 3D printing that have the potential to become even more efficient and user friendly. 
-One of these is the process of importing 3MF files containing objects with multiple materials or modifiers to a slicer to create the print file.
-Oftentimes designing a 3D model for printing is an iterative process. 
-The designer tweaks the model, prints it on their 3D printer, checks for improvement and repeats the same steps again. 
-When doing this, the slighly altered models are being imported to the slicer again and again, meaning the designer has to set materials or e. g. mark a certain object as a support blocker repeatedly following each slicer import.
+\begin{quote}
+    \small
+    It is one of the clearest paradoxes of modern work that computer-based systems designed to reduce task complexity and cognitive workload actually often impose even greater demands and stresses on the very individuals they are supposed to be helping.\cite[p.~222]{jacko_human_2012}
+\end{quote}
 
-The goal of this thesis is to prove the concept of so called print hints as a way to improve the workflow. 
-The approach as currently planned contains on the one hand an improved export function within the CAD software \emph{Autodesk Fusion} to mark certain objects as modifiers and on the other hand automatic handling of materials and print hints within the slicer software called \emph{OrcaSlicer}. 
+When designing a model for 3D printing, the process frequently follows a certain set of iterative steps. 
+After the ideation phase, the design engineer first creates the model using CAD software, imports the file (\eg STL, 3MF) to a slicer software, sets printing parameters and finally starts the printing. 
+The result is then evaluated for design flaws or areas of improvement, leading to model revisions and thereby reinitiating the workflow.
+Despite automation and optimization having been a prevalent topic in the software developer community for years, some of these repetitive steps have the potential to become more efficient and user friendly. 
+
+This thesis aims to prove the feasibility of `print hints' as a way to improve the workflow and thus reducing cognitive workload. 
+The approach as currently planned contains two core components: firstly, an improved export function within the CAD software \emph{Autodesk Fusion}, \eg to mark certain objects as modifiers; and second, automatic handling of materials and these print hints within the open source slicer software called \emph{OrcaSlicer}. 
