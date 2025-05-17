@@ -1,5 +1,24 @@
 \chapter{Introduction}\label{ch:intro}
 
+\begin{quote}
+    \small
+    It is one of the clearest paradoxes of modern work that computer-based systems designed to reduce task complexity and cognitive workload actually often impose even greater demands and stresses on the very individuals they are supposed to be helping.\cite[p.~222]{jacko_human_2012}
+\end{quote}
+
+When designing a model for 3D printing, the process frequently follows a certain set of iterative steps. 
+After the ideation phase, the design engineer first creates the model using CAD software, imports the file (\eg STL, 3MF) to a slicer software, sets the necessary parameters and finally starts printing. 
+They evaluate the result for design flaws or areas of improvement, leading to model revisions and thereby reinitiating the workflow.
+Throughout the iterations, some printing parameters might be tweaked here and there but overall you want to keep them consistent to have a realiable comparison. 
+Despite automation and optimization having been a prevalent topic in the software developer community for years, setting the parameters is overall a manual step. 
+Hence the design engineer has to remember their settings or save them some other way, possibly by writing them down meticulously or taking screenshots. 
+
+With access to printers in public institutions becoming easier and the growing popularity of 3D printing not only within the \emph{maker} community but in casual users as well, HCI needs to focus on streamlining error prone workflows like the one described above\cite{hudson_understanding_2016}. 
+``[C]urrent tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite[p.~385]{hudson_understanding_2016}
+
+This thesis focuses on the communication between CAD software and slicer, with a particular focus on proving the feasibility of `print hints'.
+The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for design engineers.
+The approach as currently planned contains two core components: firstly, an improved export function within the CAD software \emph{Autodesk Fusion}, \eg to mark certain objects as modifiers; and second, automatic handling of materials and these print hints within the open source slicer software called \emph{OrcaSlicer}. 
+
 ``\emph{makers}, a community of enthusiasts who focus on fabrication, invention and experience sharing, and who collaborate and learn in environments known as \emph{makerspaces}''\cite[p.~384]{hudson_understanding_2016}
 
 ``thousands of public institutions, such as schools, libraries, and universities are now setting up print centers or creative hubs for end users to make use of digital fabrication technologies''\cite[p.~384]{hudson_understanding_2016}
@@ -10,23 +29,10 @@
 
 ``if HCI is going to be at the forefront of inventing new fabrication design tools and interfaces[\dots], we need to look beyong enthusiasts and understand the challenges and opportunities that exist in facilitating the interactions of casual makers with fabrication technology''\cite[p.~384]{hudson_understanding_2016}
 
-``current tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innocate on design tools that take into account the interdependencies within the 3D printing workflow''\cite[p.~385]{hudson_understanding_2016}
+``current tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite[p.~385]{hudson_understanding_2016}
 
 ``while lowering the usability barriers of fabrication tools is important, it is perhaps even more important to weave-in expertise on best practices and troubleshooting tips within the walk-up-and-use tools used by casual makers to reduce theiir dependecy on operators''\cite[p.~385]{hudson_understanding_2016}
 
 ``opportunities that exist in building the next generation of inter-connected fabrication tools with features for supporting expertise sharing''\cite[p.~385]{hudson_understanding_2016}
 
 ``enthusiasts and professional users—that is, they were trained or technically literate in fabrication''\cite[p.~386]{hudson_understanding_2016}
-
-Definition of slicer
-
-``Processing the 3D model occurred in specialized software known as a slicer (as it slices the model into layers for the printer), which allowed users to select print settings, such as layer height and print speed''\cite[p.~389]{hudson_understanding_2016}.
-
-``If the user’s print failed or did not match their design intent, they would have to adjust either their model or print settings to correct the issue, often with the operator’s assistance''\cite[p.~389]{hudson_understanding_2016}
-
-
-Definition of supports 
-
-``With FDM printers, geometric constraints relating to overhangs and base size can be partially addressed using automatically generated scaffolding known as supports and rafts''\cite[p.~391]{hudson_understanding_2016}
-
-``many print centers enforced final check-overs by the operators on users’ designs and print settings before printing to reduce failed prints''\cite[p.~392]{hudson_understanding_2016}
