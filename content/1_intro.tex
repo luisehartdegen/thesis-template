@@ -7,21 +7,23 @@
 
 When designing a model for 3D printing, the process frequently follows a certain set of iterative steps. 
 After the ideation phase, the design engineer first creates the model using CAD software, imports the file (\eg STL, 3MF) to a slicer software, sets the necessary parameters and finally starts printing. 
-They evaluate the result for design flaws or areas of improvement, leading to model revisions and thereby reinitiating the workflow.
-Throughout the iterations, some printing parameters might be tweaked here and there but overall you want to keep them consistent to have a realiable comparison. 
-Despite automation and optimization having been a prevalent topic in the software developer community for years, setting the parameters is overall a manual step. 
-Hence the design engineer has to remember their settings or save them some other way, possibly by writing them down meticulously or taking screenshots. 
+They evaluate the result for design flaws or areas of improvement, leading to model revisions and thereby reinitiating the workflow as pictured in figure~\ref{workflow}.
+Throughout the iterations, some printing parameters will be tweaked but overall you want to keep them consistent to have a reliable comparison. 
+Despite automation and optimization having been a prevalent topic in the software developer community for years, setting the parameters is generally a manual step. 
+Hence, the design engineer has to remember their settings or save them some other way, possibly by writing them down meticulously or taking screenshots. 
 
-With access to printers in public institutions becoming easier and the growing popularity of 3D printing not only within the \emph{maker} community but in casual users as well, HCI needs to focus on streamlining error prone workflows like the one described above\cite{hudson_understanding_2016}. 
+With access to printers in public institutions becoming easier and the growing popularity of 3D printing not only within the \emph{maker} community but in casual users as well, HCI needs to focus on streamlining error-prone workflows like the one described above\cite{hudson_understanding_2016}. 
 ``[C]urrent tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite[p.~385]{hudson_understanding_2016}
 
 This thesis focuses on the communication between CAD software and slicer, with a particular focus on proving the feasibility of `print hints'.
 The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for design engineers.
 The approach as currently planned contains two core components: firstly, an improved export function within the CAD software \emph{Autodesk Fusion}, \eg to mark certain objects as modifiers; and second, automatic handling of materials and these print hints within the open source slicer software called \emph{OrcaSlicer}. 
 
+------
+
 ``\emph{makers}, a community of enthusiasts who focus on fabrication, invention and experience sharing, and who collaborate and learn in environments known as \emph{makerspaces}''\cite[p.~384]{hudson_understanding_2016}
 
-``thousands of public institutions, such as schools, libraries, and universities are now setting up print centers or creative hubs for end users to make use of digital fabrication technologies''\cite[p.~384]{hudson_understanding_2016}
+``thousands of public institutions, such as schools, libraries, and universities are now setting up print centers or creative hubs for end users to make use of digital fabrication technologies''\cite[p.~384] {hudson_understanding_2016}
 
 ``makerspaces that are often run by enthusiasts [\dots] attract engineers, entrepreneurs, inventors, hackers, craftsmen, and artists''\cite[p.~384]{hudson_understanding_2016}
 

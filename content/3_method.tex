@@ -1,27 +1,43 @@
 \chapter{Method}\label{ch:method}
 
+how I solve this 
+
+\section{some HCI foundational work if necessary}
+
+\section{Fusion Add-In}
 
 \begin{itemize}
-    \item how I solve this \bigskip
-    \item some HCI foundational work \bigskip
-    \item the Fusion Plugin 
-    \begin{itemize}
-        \item what is CAD software 
-        \item a lil about their API? 
-        \item why plugin / add-in / script 
-    \end{itemize}
-    \item the 3mf changes 
-    \begin{itemize}
-        \item what is 3mf? 
-        \item how do i need to change it and do the changes conform with the consortium's specifications 
-    \end{itemize}
-    \item the slicer changes
-    \begin{itemize}
-        \item what is a slicer
+    \item what is CAD software 
+    \item a lil about their API: add-in vs. script, Python vs. C++
+    \item why did I choose Python add-in
+\end{itemize}
 
-        ``Processing the 3D model occurred in specialized software known as a slicer (as it slices the model into layers for the printer), which allowed users to select print settings, such as layer height and print speed''\cite[p.~389]{hudson_understanding_2016}.
+As mentioned before, the software supports developers to create additional functionalities by providing an extensive API and the option to create either an add-in or a script directly from within Fusion's UI. 
+Using this, Fusion sets up the project structure as well as some example code to make it easier to get started especially for beginners. 
+Fusion runs natively on Python but offers to create the add-in or script either in Python or in C++. 
 
-        \item how did it process 3mf so far? 
-        \item what did I change? 
-    \end{itemize}
+\subsection{Script vs. Add-in}\cite{autodesk_inc_fusion_2025-1}
+\begin{itemize}
+    \item \textbf{Run on Startup} – This setting is add-in-specific and indicates if the add-in should be run automatically when Fusion is started.  Most add-ins will want to take advantage of this capability so the commands they define will be available to the user as soon as Fusion starts.
+    \item The user executes a script through the “Scripts and Add-Ins” command, and the execution stops immediately after the run function is complete. A script runs, and then it is done.
+    \item An add-in is typically automatically loaded by Fusion when Fusion starts up. An add-in also usually creates one or more custom commands and adds them to the user interface during startup. The add-in continues to run throughout the Fusion session, so it can react whenever the user executes any of its commands. The add-in remains running until Fusion is shut down or the user explicitly stops it through the “Scripts and Add-Ins” dialog. When it stops, it cleans up whatever user interface customization it created in its stop function.
+\end{itemize}
+
+\subsection{Python vs. C++}
+
+\section{3mf changes}
+\begin{itemize}
+    \item what is 3mf? 
+    \item how do i need to change it and do the changes conform with the consortium's specifications 
+\end{itemize}
+
+
+\section{slicer changes}
+\begin{itemize}
+    \item what is a slicer
+
+    ``Processing the 3D model occurred in specialized software known as a slicer (as it slices the model into layers for the printer), which allowed users to select print settings, such as layer height and print speed''\cite[p.~389]{hudson_understanding_2016}.
+
+    \item how does it process 3mf per default? 
+    \item what did I change? 
 \end{itemize}
