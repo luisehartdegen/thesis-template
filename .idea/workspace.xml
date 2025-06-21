@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="6b1cf819-a0b6-4cbf-867c-441e330e3b63" name="Changes" comment="" />
+    <list default="true" id="6b1cf819-a0b6-4cbf-867c-441e330e3b63" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/pdfa.xmpi" beforeDir="false" afterPath="$PROJECT_DIR$/pdfa.xmpi" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/thesis.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/thesis.pdf" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -13,10 +16,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2xJv7sjH50pkImvtzTidOIdu4gL" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -28,6 +31,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
     "git-widget-placeholder": "bachelor-thesis",
+    "last_opened_file_path": "/Users/luisehartdegen/Nextcloud/Uni/thesis-template",
     "nodejs_package_manager_path": "npm",
     "vue.rearranger.settings.migration": "true"
   }
@@ -41,7 +45,11 @@
       <option name="presentableId" value="Default" />
       <updated>1747668827619</updated>
       <workItem from="1747668831757" duration="4000" />
+      <workItem from="1750504307678" duration="78000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>
