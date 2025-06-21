@@ -25,12 +25,53 @@ Fusion runs natively on Python but offers to create the add-in or script either 
 
 \subsection{Python vs. C++}
 
-\section{3mf changes}
+\section{3MF File Format}
 \begin{itemize}
-    \item what is 3mf? 
-    \item how do i need to change it and do the changes conform with the consortium's specifications 
+    \item what is 3mf?    
+    \item why 3mf and not stl or other file formats?
+    \item do i need to change it and do the changes conform with the consortium's specifications 
 \end{itemize}
 
+\subsubsection{The 3MF specification} \cite{3mf_consortium_3mf_2025}
+\begin{itemize}
+    \item 3MF = ZIP archive following the .ZIP File Format Specifications by PKWARE Inc. containing one or more 3D payloads
+    \item 3D payload = ``complete collection of interdependent parts and relationships within a package'' consisting of ``a 3D object definition and its supporting files''
+    \item 3MF document parts $\rightarrow$ table \ref{doc_parts}, figure \ref{doc_structure}
+
+    \begin{table}
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{m{0.21\linewidth} m{0.5\linewidth} m{0.14\linewidth}}
+            \textbf{Name} & \textbf{Description} & \textbf{Required /} \textbf{Optional} \\
+            \hline
+            3D Model & Contains the description of one or more 3D objects for
+manufacturing. & Required \\
+            Core Properties & The OPC part that contains various document properties. & Optional \\
+            Object Thumbnail & Contains a small JPEG or PNG image that represents a 3D object in a 3D Model. & Optional \\
+            3D Texture & Contains a texture used to apply color to a 3D object in the 3D Model part (available for extensions) & Optional \\
+            PrintTicket & Provides settings to be used when outputting the 3D object(s) in the 3D Model part. & Optional \\
+            Custom Parts & OPC parts that are associated with metadata & Optional
+        \end{tabular}\smallskip
+
+        \caption{Excerpt of 3MF document parts\cite[p.~4]{3mf_consortium_3mf_2025}}
+        \label{doc_parts}
+    \end{table}
+    
+    \begin{figure}[h]
+        \dirtree{%
+            .1 example.3mf.
+            .2 \detokenize{_rels}/.
+            .2 \detokenize{[Content_Types].xml}/.
+            .2 3D/.
+            .3 3dmodel.model.
+            .2 Metadata/.
+            .3 thumbnail.png.
+        }
+        \caption{Typical internal structure of 3MF file as exported from \emph{Autodesk Fusion}}
+        \label{doc_structure}
+    \end{figure}
+    \item most important: 3D Model Part = root of 3D payload $\rightarrow$ ``contains definitions of one or more objects to be fabricated by 3D manufacturing processes''\cite[p.~6]{3mf_consortium_3mf_2025} $\rightarrow$ contains resource definitions (objects, materials) and items to be build 
+    \item PrintTicket $\rightarrow$ seems to be OS specific, so probably not helpful but \textcolor{red}{investigate further}
+\end{itemize}
 
 \section{slicer changes}
 \begin{itemize}
