@@ -1,0 +1,65 @@
+\chapter{Background}\label{ch:background}
+
+\section{State of the Art}
+\begin{itemize}
+    \item current situation $\rightarrow$ workflow as is with specific, tangible examples; how do others solve this? 
+    \item related work if applicable
+\end{itemize}
+
+\section{Foundations}
+\begin{itemize}
+    \item what is CAD software?
+    \item what is a slicer?
+
+    ``Processing the 3D model occurred in specialized software known as a slicer (as it slices the model into layers for the printer), which allowed users to select print settings, such as layer height and print speed''\cite[p.~389]{hudson_understanding_2016}.
+    \item 3MF File Format $\rightarrow$ why 3mf and not stl or other file formats?
+\end{itemize}
+
+\subsubsection{The 3MF specification} \cite{3mf_consortium_3mf_2025}
+\begin{itemize}
+    \item ``3MF Document markup has been designed in anticipation of the evolution of this specification. It also allows third parties to extend the markup. Extensions are a critical part of 3MF, and as such, this core specification is as narrow as possible.'' [p.~8]
+    \item 3MF = ZIP archive following the .ZIP File Format Specifications by PKWARE Inc. containing one or more 3D payloads
+    \item 3D payload = ``complete collection of interdependent parts and relationships within a package'' consisting of ``a 3D object definition and its supporting files''
+    \item 3MF document parts $\rightarrow$ table \ref{doc_parts}, figure \ref{doc_structure}
+
+    \begin{table}
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{m{0.21\linewidth} m{0.5\linewidth} m{0.14\linewidth}}
+            \textbf{Name} & \textbf{Description} & \textbf{Required /} \textbf{Optional} \\
+            \hline
+            3D Model & Contains the description of one or more 3D objects for
+manufacturing. & Required \\
+            Core Properties & The OPC part that contains various document properties. & Optional \\
+            Object Thumbnail & Contains a small JPEG or PNG image that represents a 3D object in a 3D Model. & Optional \\
+            3D Texture & Contains a texture used to apply color to a 3D object in the 3D Model part (available for extensions) & Optional \\
+            PrintTicket & Provides settings to be used when outputting the 3D object(s) in the 3D Model part. & Optional \\
+            Custom Parts & OPC parts that are associated with metadata & Optional
+        \end{tabular}\smallskip
+
+        \caption{Excerpt of 3MF document parts\cite[p.~4]{3mf_consortium_3mf_2025}}
+        \label{doc_parts}
+    \end{table}
+    
+    \input{figures/3mf_file_structure.tex}
+
+    \item PrintTicket $\rightarrow$ seems to be OS specific, so probably not helpful but \todo investigate further
+    \item most important: 3D Model Part = root of 3D payload $\rightarrow$ ``contains definitions of one or more objects to be fabricated by 3D manufacturing processes''\cite[p.~6]{3mf_consortium_3mf_2025} $\rightarrow$ contains resource definitions (objects, materials) and items to be build 
+
+    \begin{itemize}
+        \item there MUST be exactly one <model> element in a 3D Model part
+        \item a model must have two additional child elements: <resources> and <build>
+        \item <resources> element
+
+        \begin{itemize}
+            \item provides a set of definitions that can be drawn from to define a 3D object
+            \item root element of a library of constituent pieces of the overall 3D object definition $\rightarrow$ objects, properties, materials
+            \item `object resource': 3d object that could be but will not be manufactured on its own
+        \end{itemize}
+        \item <build> element
+        
+        \begin{itemize}
+            \item provides a set of items that should actually be manufactured as part of the job
+            \item contains \texttt{<item>} elements = objects to be manufactured
+        \end{itemize}
+    \end{itemize}
+\end{itemize}

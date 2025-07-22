@@ -1,0 +1,43 @@
+\chapter{Method}\label{ch:method}
+
+what’s the solution(s) I came up with $\rightarrow$ sketching out different possibilities and why I chose the one I did 
+
+\section{Explored Possible Solutions}
+
+\section{Fusion Add-In}
+
+\begin{itemize}
+    \item what is CAD software 
+    \item a lil about their API: add-in vs. script, Python vs. C++
+    \item why I chose to realise it as a Python add-in
+    \item possibly different approaches if more than one way to solve it came up 
+\end{itemize}
+
+As mentioned before, the software supports developers to create additional functionalities by providing an extensive API and the option to create either an add-in or a script directly from within Fusion's UI. 
+Using this, Fusion sets up the project structure as well as some example code to make it easier to get started especially for beginners. 
+Fusion runs natively on Python but offers to create the add-in or script either in Python or in C++. 
+
+\subsection{Script vs. Add-in}\cite{autodesk_inc_fusion_2025-1}
+\begin{itemize}
+    \item \textbf{Run on Startup} – This setting is add-in-specific and indicates if the add-in should be run automatically when Fusion is started.  Most add-ins will want to take advantage of this capability so the commands they define will be available to the user as soon as Fusion starts.
+    \item The user executes a script through the “Scripts and Add-Ins” command, and the execution stops immediately after the run function is complete. A script runs, and then it is done.
+    \item An add-in is typically automatically loaded by Fusion when Fusion starts up. An add-in also usually creates one or more custom commands and adds them to the user interface during startup. The add-in continues to run throughout the Fusion session, so it can react whenever the user executes any of its commands. The add-in remains running until Fusion is shut down or the user explicitly stops it through the “Scripts and Add-Ins” dialog. When it stops, it cleans up whatever user interface customization it created in its stop function.
+\end{itemize}
+
+\subsection{Python vs. C++}
+
+\section{if necessary: changes to 3MF File Format}
+
+\section{slicer changes}
+\begin{itemize}
+    \item how does it process 3mf per default? 
+    \item different possible approaches to solve the problem at hand and why did I do it the chosen way? 
+\end{itemize}
+
+\section{Implementation Design}
+
+\begin{itemize}
+    \item software architecture (diagram?)
+    \item input, output
+    \item choices that had to be made 
+\end{itemize}
