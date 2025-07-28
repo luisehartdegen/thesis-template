@@ -6,13 +6,27 @@
     \item related work if applicable
 \end{itemize}
 
+\subsection{Current Workflow}
+
+\begin{enumerate}
+    \item create 3D model in Fusion
+    \item export as 3mf file 
+    \item open in OrcaSlicer
+    \item set parameters
+    \begin{itemize}
+        \item apply system or user defined material presets, optionally setting up new presets
+        \item apply settings (wall loops, infill percentage and pattern, layer speed etc.) manually per object or using presets globally (only available globally, not for single objects $\rightarrow$ \href{https://github.com/SoftFever/OrcaSlicer/issues/7769}{OrcaSlicer Issue \#7769})
+        \item change type to Modifier / Support Blocker / Support Enhancer; in case of Modifier $\rightarrow$ apply settings accordingly
+    \end{itemize}
+\end{enumerate}
+
 \section{Foundations}
 \begin{itemize}
     \item what is CAD software?
     \item what is a slicer?
 
     ``Processing the 3D model occurred in specialized software known as a slicer (as it slices the model into layers for the printer), which allowed users to select print settings, such as layer height and print speed''\cite[p.~389]{hudson_understanding_2016}.
-    \item 3MF File Format $\rightarrow$ why 3mf and not stl or other file formats?
+    \item 3MF File Format $\rightarrow$ why 3MF and not STL or other file formats? why not OBJ, since it supports exporting materials from fusion and mapping then in OrcaSlicer natively?
 \end{itemize}
 
 \subsubsection{The 3MF specification} \cite{3mf_consortium_3mf_2025}
@@ -49,17 +63,11 @@ manufacturing. & Required \\
         \item there MUST be exactly one <model> element in a 3D Model part
         \item a model must have two additional child elements: <resources> and <build>
         \item <resources> element
-
-        \begin{itemize}
-            \item provides a set of definitions that can be drawn from to define a 3D object
-            \item root element of a library of constituent pieces of the overall 3D object definition $\rightarrow$ objects, properties, materials
-            \item `object resource': 3d object that could be but will not be manufactured on its own
-        \end{itemize}
+        
+        provides a set of definitions that can be drawn from to define a 3D object; root element of a library of constituent pieces of the overall 3D object definition $\rightarrow$ objects, properties, materials; `object resource': 3d object that could be but will not be manufactured on its own
+        
         \item <build> element
         
-        \begin{itemize}
-            \item provides a set of items that should actually be manufactured as part of the job
-            \item contains \texttt{<item>} elements = objects to be manufactured
-        \end{itemize}
+        provides a set of items that should actually be manufactured as part of the job; contains \texttt{<item>} elements = objects to be manufactured
     \end{itemize}
 \end{itemize}
