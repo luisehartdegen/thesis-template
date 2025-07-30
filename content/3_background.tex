@@ -6,8 +6,22 @@
     \item related work if applicable
 \end{itemize}
 
-When analysing the process from idea to print, several main steps can be identified. 
-Using \todo xy as an example, the following analysis will focus on the steps from exporting a model to printing, while taking the ideation and design phase as given. 
+\begin{wrapfigure}{r}{0.48\linewidth}
+    \includegraphics[width=\linewidth]{3dmodel_box.png}
+    \caption{3D model of simple box}
+    \label{simple-3d-model-box}
+\end{wrapfigure}
+
+When analyzing the process from idea to print, several main steps can be identified. 
+Using the simple box in \ref{simple-3d-model-box} with some particular features as an example, the following analysis will focus on the steps from exporting a model to printing, while taking the ideation and design phase as given. 
+
+\subsection{Workflow using STL}
+When exporting the model as an STL file, 
+
+\subsection{Workflow using 3MF}
+
+\subsection{Workflow using OBJ}
+
 Once a 3D model has been created, the user exports it using one of several ways Fusion offers.
 Depending on the file format, a model can be exported as one file containing multiple objects or one file per object. 
 The three formats used most often for 3D printing are STL, 3MF and OBJ, each presenting different advantages and disadvantages. 
@@ -15,7 +29,7 @@ The user then opens the exported file in OrcaSlicer.
 Opening the file, or importing it, may cause different dialogs to open, depending on the file type and content. 
 So far all steps are fairly simple. 
 
-Next, various printing paramters have to be applied. 
+Next, various printing parameters have to be applied. 
 Especially when a model consists of multiple parts, the parameters might vary from one object to the next. 
 Firstly, materials can be set using system or user defined presets per object. 
 Material settings entail for example the filament itself, nozzle temperature, general printing speed and cooling settings.
@@ -23,7 +37,7 @@ OrcaSlicer actively asks the user, whether they want to save any changes to mate
 
 Furthermore settings like the amount of wall loops, infill percentage and pattern, and printing speed for single layers might need to be customized. 
 It is possible to save these as presets as well, however only globally, \ie they can only be applied to the entire project, not to specific objects within.
-As critizised by GitHub user \textit{headamame} in the \cite[OrcaSlicer Issue \#7769]{headamame_copypaste_2024}, particularly for projects containing multiple objects, using presets is not a valid option.
+As criticized by GitHub user \textit{headamame} in the \cite[OrcaSlicer Issue \#7769]{headamame_copypaste_2024}, particularly for projects containing multiple objects, using presets is not a valid option.
 
 \todo different workflows for different file formats 
 
