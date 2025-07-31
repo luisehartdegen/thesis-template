@@ -2,19 +2,20 @@
 
 \section{State of the Art Workflow}
 
-\begin{wrapfigure}[10]{r}{0.48\linewidth}
+\begin{wrapfigure}[9]{r}{0.48\linewidth}
+    \vspace{-10pt}
     \includegraphics[width=\linewidth]{3dmodel_box.png}
     \caption{3D model of simple box}
     \label{simple-3d-model-box}
 \end{wrapfigure}
 
 When analyzing the process from idea to print, several main steps can be identified as shown in \ref{workflow}. 
-Using a simple box with a snap-fit closure and hinge to be printed in a flexible material as an example, the following analysis will focus on the steps from exporting a model to printing, highlighting in particular how the workflow differs depending on the file format used in regards to three points.
+Using a simple box with a snap-fit closure and hinge as an example, the following analysis will focus on the steps from exporting a model to printing, highlighting in particular how the workflow differs depending on the file format used in regards to three points.
 
 \begin{enumerate}
     \item A model consisting of multiple parts 
-    \item Using multiple materials
-    \item Using model parts as modifiers
+    \item Using multiple materials (e.g. printing the hinge in a flexible material)
+    \item Using model parts as modifiers (e.g. the light blue boxes as modifiers to print more wall loops in this area)
 \end{enumerate} 
 
 Exporting the model from Fusion is possible via two dialogs: the general export and the 3D print specific one.
@@ -24,10 +25,12 @@ For all three the user can decide whether to generate one file containing all se
 
 \subsection{Exporting as STL}
 
-When exporting the model as an STL file, one important distinction is that there will always be one body in the resulting file, even if the model is comprised of multiple bodies within Fusion. 
-Therefore the user has to choose whether to combine all bodies into one, and thus loosing the option to print certain parts in a different material (e.g. the red parts in a flexible material to use as hinge) or to use parts as modifiers (e.g. the blue boxes for additional wall loops). 
+Exporting the model as an STL file immediately shows one important distinction. 
+Namely, that there will always be one body in the resulting file, even if the model is comprised of multiple bodies within Fusion. 
+Therefore the user has to choose whether to combine all bodies into one, and thus loosing the option to print the hinges in a flexible material or to use parts as modifiers (e.g. the blue boxes for additional wall loops). 
 Alternatively exporting each body as a separate file might loose their spatial relations to each other while keeping the bodies separate.
 However, ``STL native files describe only the surface geometry of a three dimensional object without any representation of color, texture or other common CAD model attributes.''\cite{iancu_about_2018}
+Even if a user applies materials in Fusion, that information won't be exported, and the user has to apply all materials anew in OrcaSlicer. 
 
 \subsection{Exporting as OBJ}
 
@@ -41,12 +44,13 @@ Instead the user would have to reimport the entire model, thus potentially loosi
 
 \subsection{Exporting as 3MF}
 
-\todo
+Unlike the other two formats, 3MF preserves the separate bodies even when exported as a single file, making it useful for applying different materials, settings or modifiers to each body, while savely keeping the spatial relations.
 
+\todo TBC
 
-Next, various printing parameters have to be applied. 
-Especially when a model consists of multiple parts, the parameters might vary from one object to the next. 
-Firstly, materials can be set using system or user defined presets per object. 
+\subsection{Applying Settings with and without Presets}
+
+Generally, materials can be set using system or user defined presets per object. 
 Material settings entail for example the filament itself, nozzle temperature, general printing speed and cooling settings.
 OrcaSlicer actively asks the user, whether they want to save any changes to material parameters they have made, which makes it easy to save either parameters specific to one's printer and filament or even specific to one project while simultaneously keeping default material presets untouched.
 
