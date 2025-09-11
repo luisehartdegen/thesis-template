@@ -1,29 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<model xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" unit="millimeter" xml:lang="en-US" xmlns:m="http://schemas.microsoft.com/3dmanufacturing/material/2015/02" xmlns:p="http://schemas.microsoft.com/3dmanufacturing/production/2015/06" xmlns:b="http://schemas.microsoft.com/3dmanufacturing/beamlattice/2017/02" xmlns:s="http://schemas.microsoft.com/3dmanufacturing/slice/2015/07" xmlns:sc="http://schemas.microsoft.com/3dmanufacturing/securecontent/2019/04">
-  <metadata name="Title" type="QName" preserve="1">Test v2</metadata>
-  <resources>
-  	<m:colorgroup id="2">
-      <m:color color="#CC60FFFF"/>
-  	  <m:color color="#A0A0A0FF"/>
-    </m:colorgroup>
-	<object id="1" name="Body9" type="model" p:UUID="33f607be-287f-48ea-b893-8ee1626ed2b1" pid="2" pindex="0">
-	  <mesh>
-		<vertices>
-		  <vertex x="-39.484996" y="6.249999" z="30.000000" />
-		  <vertex x="-37.568216" y="6.249999" z="30.000000" />
-		  <vertex x="-37.568216" y="6.249999" z="33.000000" />
-		  ...
-        </vertices>
-        <triangles>
-          <triangle v1="0" v2="1" v3="3" />
-          <triangle v1="3" v2="1" v3="2" />
-          <triangle v1="4" v2="0" v3="5" />
-          ...
-        </triangles>
-      </mesh>
-    </object>
-  </resources>
-  <build p:UUID="cd9553e5-fa90-4b4e-916e-bd1fed06979c">
-    <item objectid="1" p:UUID="91670927-ae59-46f3-cb97-91a310462033"/>
-  </build>
+<model xmlns="http://schemas.microsoft.com/3dmanufacturing/core/2015/02" unit="millimeter" xml:lang="en-US" ...>
+	<metadata name="Title" type="QName" preserve="1">Pandoras Box</metadata>
+	<resources>
+		<m:colorgroup id="2">
+			<m:color color="#B4B3B3FF"/>
+			<m:color color="#A0A0A0FF"/>
+		</m:colorgroup>
+		<m:colorgroup id="4">
+			<m:color color="#449648FF"/>
+			<m:color color="#A0A0A0FF"/>
+		</m:colorgroup>
+		...
+		<object id="1" name="Body1" type="model" p:UUID="88b92134-b51b-4129-a501-3cb7a6b35a19" pid="2" pindex="0">
+			<mesh>
+				<vertices>
+					<vertex x="99.000000" y="-34.800000" z="32.500000" />
+					<vertex x="99.000000" y="-34.800000" z="35.000000" />
+					...
+				</vertices>
+				<triangles>
+					<triangle v1="0" v2="1" v3="3" />
+					<triangle v1="3" v2="1" v3="2" />
+					...
+				</triangles>
+			</mesh>
+		</object>
+		<object id="3" name="Body10" type="model" p:UUID="83b1ffc1-fe3a-41ff-b2d8-709e401b58c0" pid="4" pindex="0">
+			<mesh>
+				<vertices>
+					<vertex x="97.000000" y="44.000000" z="26.000000" />
+					...
+				</vertices>
+				<triangles>
+					<triangle v1="0" v2="1" v3="3" />
+					...
+				</triangles>
+			</mesh>
+		</object>
+	</resources>
+	<build p:UUID="9062348e-a030-4f92-86b2-786a03cd804d">
+		<item objectid="1" p:UUID="df0ef4a8-b05c-41c3-a041-f6ca9d41a68c"/>
+		<item objectid="3" p:UUID="2dd63bd5-069d-405e-9b05-0fd5f5a71f72"/>
+    ...
+	</build>
 </model>

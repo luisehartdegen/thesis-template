@@ -2,39 +2,28 @@
 
 what’s the solution(s) I came up with $\rightarrow$ sketching out different possibilities and why I chose the one I did 
 
-\section{Explored Possible Solutions}
-
-\section{Fusion Add-In}
-
+\section{Writing print hints to 3MF file in Fusion}
 \begin{itemize}
-    \item what is CAD software 
-    \item a lil about their API: add-in vs. script, Python vs. C++
-    \item why I chose to realise it as a Python add-in
-    \item possibly different approaches if more than one way to solve it came up 
+    \item possible via add-in?
+    \item only for marking surfaces / specific triangles as ``down'', i.e. the surface to be flush with the printing bed $\rightarrow$ modifiers for now (as a proof of concept) marked via specific materials
+    \item can these be saved to Fusion's proprietary project files?
+    \item can I just add them with a custom 3mf export function or can they be written to the 3mf file using Fusion's default export? 
+    \item no need to 
 \end{itemize}
 
-As mentioned before, the software supports developers to create additional functionalities by providing an extensive API and the option to create either an add-in or a script directly from within Fusion's UI. 
-Using this, Fusion sets up the project structure as well as some example code to make it easier to get started especially for beginners. 
-Fusion runs natively on Python but offers to create the add-in or script either in Python or in C++. 
-
-\subsection{Script vs. Add-in}\cite{autodesk_inc_fusion_2025-1}
+\section{Analysis of OrcaSlicer's 3MF file Processing}
 \begin{itemize}
-    \item \textbf{Run on Startup} – This setting is add-in-specific and indicates if the add-in should be run automatically when Fusion is started.  Most add-ins will want to take advantage of this capability so the commands they define will be available to the user as soon as Fusion starts.
-    \item The user executes a script through the “Scripts and Add-Ins” command, and the execution stops immediately after the run function is complete. A script runs, and then it is done.
-    \item An add-in is typically automatically loaded by Fusion when Fusion starts up. An add-in also usually creates one or more custom commands and adds them to the user interface during startup. The add-in continues to run throughout the Fusion session, so it can react whenever the user executes any of its commands. The add-in remains running until Fusion is shut down or the user explicitly stops it through the “Scripts and Add-Ins” dialog. When it stops, it cleans up whatever user interface customization it created in its stop function.
-\end{itemize}
-
-\subsection{Python vs. C++}
-
-\section{if necessary: changes to 3MF File Format}
-
-\section{slicer changes}
-\begin{itemize}
-    \item how does it process 3mf per default? 
-    \item different possible approaches to solve the problem at hand and why did I do it the chosen way? 
+    \item it does read in all the xml lines from the \textit{3dmodel.model} file including the materials but it doesn't write them to the model 
+    \item add model diagram here 
 \end{itemize}
 
 \section{Implementation Design}
+different possible approaches to solve the problem at hand and why did I do it the chosen way? 
+
+As mentioned before, as a proof of concept using specific materials to represent the possible modifiers was the way to go. 
+The idea was to save user presets locally containing a map of ``materials'', i.e. the RGBA hexcodes, to chosen modifier presets or actual filaments respectively. 
+When opening a new 3MF project, the user would be prompted to either confirm the material to modifier / filament mappings or select options for newly detected materials. 
+This reduces the need to apply settings upon each import while simultaneously giving the user the option to easily change mappings. 
 
 \begin{itemize}
     \item software architecture (diagram?)

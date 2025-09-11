@@ -12,3 +12,64 @@ Definition of supports
     \item how it might make sharing files easier for beginners when supports and modifiers are included $\rightarrow$ lowering the access barrier for casuals, beginners and in educational contexts
     \item how it reduces cognitive workload $\rightarrow$ minimizing mistakes and waste due to prints going wrong 
 \end{itemize}
+
+``\emph{makers}, a community of enthusiasts who focus on fabrication, invention and experience sharing, and who collaborate and learn in environments known as \emph{makerspaces}''\cite{hudson_understanding_2016}
+
+``thousands of public institutions, such as schools, libraries, and universities are now setting up print centers or creative hubs for end users to make use of digital fabrication technologies''\cite{hudson_understanding_2016}
+
+``makerspaces that are often run by enthusiasts [\dots] attract engineers, entrepreneurs, inventors, hackers, craftsmen, and artists''\cite{hudson_understanding_2016}
+
+``casual makers serve as a proxy for what it will be like for the general public to use 3D printing''\cite{hudson_understanding_2016}
+
+``if HCI is going to be at the forefront of inventing new fabrication design tools and interfaces[\dots], we need to look beyong enthusiasts and understand the challenges and opportunities that exist in facilitating the interactions of casual makers with fabrication technology''\cite{hudson_understanding_2016}
+
+``current tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite{hudson_understanding_2016}
+
+``while lowering the usability barriers of fabrication tools is important, it is perhaps even more important to weave-in expertise on best practices and troubleshooting tips within the walk-up-and-use tools used by casual makers to reduce theiir dependecy on operators''\cite{hudson_understanding_2016}
+
+``opportunities that exist in building the next generation of inter-connected fabrication tools with features for supporting expertise sharing''\cite{hudson_understanding_2016}
+
+``enthusiasts and professional users—that is, they were trained or technically literate in fabrication''\cite{hudson_understanding_2016}
+
+
+% 3mf 
+
+    \begin{table}
+        \renewcommand{\arraystretch}{1.3}
+        \begin{tabular}{m{0.21\linewidth} m{0.5\linewidth} m{0.14\linewidth}}
+            \textbf{Name} & \textbf{Description} & \textbf{Required /} \textbf{Optional} \\
+            \hline
+            3D Model & Contains the description of one or more 3D objects for
+manufacturing. & Required \\
+            Core Properties & The OPC part that contains various document properties. & Optional \\
+            Object Thumbnail & Contains a small JPEG or PNG image that represents a 3D object in a 3D Model. & Optional \\
+            3D Texture & Contains a texture used to apply color to a 3D object in the 3D Model part (available for extensions) & Optional \\
+            PrintTicket & Provides settings to be used when outputting the 3D object(s) in the 3D Model part. & Optional \\
+            Custom Parts & OPC parts that are associated with metadata & Optional
+        \end{tabular}\smallskip
+
+        \caption{Excerpt of 3MF document parts\cite[p.~4]{3mf_consortium_3mf_2025}}
+        \label{doc_parts}
+    \end{table}
+
+    \section{Fusion Add-In}
+
+\begin{itemize}
+    \item what is CAD software 
+    \item a lil about their API: add-in vs. script, Python vs. C++
+    \item why I chose to realise it as a Python add-in
+    \item possibly different approaches if more than one way to solve it came up 
+\end{itemize}
+
+As mentioned before, the software supports developers to create additional functionalities by providing an extensive API and the option to create either an add-in or a script directly from within Fusion's UI. 
+Using this, Fusion sets up the project structure as well as some example code to make it easier to get started especially for beginners. 
+Fusion runs natively on Python but offers to create the add-in or script either in Python or in C++. 
+
+\subsection{Script vs. Add-in}\cite{autodesk_inc_fusion_Script_addin_2025}
+\begin{itemize}
+    \item \textbf{Run on Startup} – This setting is add-in-specific and indicates if the add-in should be run automatically when Fusion is started.  Most add-ins will want to take advantage of this capability so the commands they define will be available to the user as soon as Fusion starts.
+    \item The user executes a script through the “Scripts and Add-Ins” command, and the execution stops immediately after the run function is complete. A script runs, and then it is done.
+    \item An add-in is typically automatically loaded by Fusion when Fusion starts up. An add-in also usually creates one or more custom commands and adds them to the user interface during startup. The add-in continues to run throughout the Fusion session, so it can react whenever the user executes any of its commands. The add-in remains running until Fusion is shut down or the user explicitly stops it through the “Scripts and Add-Ins” dialog. When it stops, it cleans up whatever user interface customization it created in its stop function.
+\end{itemize}
+
+\subsection{Python vs. C++}
