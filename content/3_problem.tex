@@ -1,27 +1,56 @@
 \chapter{Problem}\label{ch:problem}
 
-what’s the real world problem I am trying to solve? why is solving it important?
+As shown in the previous chapters \ref{chap:apply-materials} and \ref{chap:apply-settings}, there are a lot of parameters to be repeatedly applied before a 3D model can be printed. 
+So, why would this be a problem? 
+There are in fact multiple points to consider regarding the necessity of repetitive manual steps in a common digital workflow especially in educational and casual makers' contexts. 
+
+\section{Negative Effects of Cognitive Workload}
+
+Setting the parameters once might be an engaging part of the entire process of getting to the final product. 
+Especially in an educational context, the users do learn a lot about the possibilities the slicer and printer offer, the entire fabrication process and how to approach a project on their own. 
+Doing the exact same steps repeatedly however, does not teach the users anything, while still requiring a certain amount of cognitive workload. 
+
+What does this even mean? 
+As Kosch \etal summarized in \cite{kosch_survey_2023}, there are various definitions used in the field of human computer interaction (HCI).
+One of them differentiates between \textit{intrinsic} and \textit{extraneous load}.
+The former encompasses the ``inherent complexity of a task'' and therefore ``depends on the users individual cognitive resources and proficiency'', i.e. their skills. 
+In other words, how difficult and extensive is a task to begin with and how well equipped is the person in dealing with the complexity. 
+On the other hand, the latter describes cognitive resources needed due to the ``task representation that can be perceived'' by the users.
+For instance, how does the design of a user interface either reduce or increase friction within a given workflow?
+
+Cognitive workload being a part of the workflow isn't a negative aspect in itself. 
+To a certain degree it is even necessary to foster task engagement which increases the learning effects and the feel of accomplishment.
+In the process at hand both types of cognitive workload can be identified.
+When initially setting the printing parameters, the task will be inherently complex; more or less so, depending on the complexity of the project itself. 
+Each repetition however does turn into extraneous load, since having done the steps once before, the task requires focus without any added value of engagement, thus creating additional friction by way of design. 
+One might argue that for beginners as well as casual users the step can nevertheless be overwhelming within the larger context of several new and complex tasks while for advanced makers it is simply tedious and time consuming. 
+
+Due to the task being only one part of a multifaceted list of steps, this kind of friction claims resources that won't be free to solve other parts like setting up the printer. 
+One might argue that people should just focus on one task at a time, plan ahead and not try to multitask, however with the added time constraint oftentimes present in particular in educational environments but also when using community equipment (e.g. in makerspaces), it becomes a necessary evil. %% confusing additional argument - either expand on it or throw it out 
+
+%% BIG FLAW: where's the evidence / metrics to support the thesis of this? Can I say "these statements are largely based on analytical observations of classroom scenarios since the scope of the project did not extent to user studies"?
+
+$\rightarrow$ increasing amount of errors? 
+
+\section{Sharing Models Online}
+
+Hudson \etal worked out a few key problems impacting the whole user experience, one of these being the problem of settings causing print failures.\cite{hudson_understanding_2016} 
+While this can't be entirely avoided through the solution presented in the following chapter, it can be reduced. 
+Since creating a 3D model does present an obstacle, people turn ``to premade 3D models available through services such as \textit{Thingiverse.com}''.\cite{hudson_understanding_2016}
+However even when using such pre-made models, which oftentimes come with elaborate instructions regarding the printing parameters, users were successful only with the help of print center operators. 
+Especially when 3D printers are provided by community institutions like libraries though, the staff might not be trained in the use of these printers as well as in makerspaces.
+This results in failed prints, frustrating the user but also creating material waste. 
+
+
+``With personal fabrication, however, the responsibility of waste generation is shifting directly to individual makers. As making becomes more accessible, the amount of material waste generated at the grassroots level is increasing.'' Make Making Sustainable
 
 
 
-\begin{itemize}
-    \item Repetitive Steps in the Iterative Workflow
-    
-    \begin{figure}[h]
-        \centering
-        \includegraphics[width=\linewidth]{FlowChart_IterativeProcess.png}
-        \caption{Iterative workflow in 3D printing highlighting the step to be optimized}
-        \label{workflow}
-    \end{figure}
-    \item Negative Effects resulting from manual Repetitive Steps
-    
-    \todo research cognitive workload / increased amount of errors due to necessary repetitive steps (podcast about to-do lists $\rightarrow$ air plane take off / landing checklists {\tiny(yes, this is relevant)})
-    
-    some HCI foundational work if necessary
-    
-    ``If the user’s print failed or did not match their design intent, they would have to adjust either their model or print settings to correct the issue, often with the operator’s assistance''\cite{hudson_understanding_2016}
-    \item Usage of Presets
 
-    do people (esp. beginners) use presets? if no, why and how would it make their life easier? is it even possible in community spaces like libraries and schools?
-    \item the need for elaborate and extensive printing instructions when sharing a complex model online 
-\end{itemize}
+% Negative Effects resulting from manual Repetitive Steps 
+%   increased amount of errors due to necessary repetitive steps
+%   higher frustration levels
+%   discouraged beginners, waste of time / material / resources in early stages of teaching 
+%   ``If the user’s print failed or did not match their design intent, they would have to adjust either their model or print settings to correct the issue, often with the operator’s assistance''\cite{hudson_understanding_2016} $\rightarrow$ frustration tolerance 
+
+%. the need for elaborate and extensive printing instructions when sharing a complex model online 
