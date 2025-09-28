@@ -1,33 +1,45 @@
 \chapter{Method}\label{ch:method}
 
-what’s the solution(s) I came up with $\rightarrow$ sketching out different possibilities and why I chose the one I did 
+The task of setting printing parameters is by nature a complex one, due to the many different printers, materials and project-specific needs out there. 
+To recap briefly, the intention is not to reduce that complexity in and of itself, but to reduce the need to remember and repeatedly apply those settings. 
+Accordingly from the very start, the idea was to mark bodies with so-called `print hints' in a 3D model in a way that enables the slicer to apply the user's parameters automatically when importing a new model. 
 
-what exactly are print hints 
+option 1: writing directly to the 3mf model\_settings.config $\rightarrow$ complex
 
-The task of setting printing parameters correctly is by nature a complex one, due to the many different printers, materials and needs out there. 
-Therefore simplifying the menu itself would be counterproductive, robbing more advanced users of options or making tasks even more frustrating by hiding menus.
-Accordingly another possibility to reduce the task's complexity lies in ``predicting'' the user's next steps.
+option 2: using Fusion's native options to apply appearances and mapping those to filaments, printing parameters and modifier types using a custom mapping file and a dialog similar to the filament mapping when importing an .obj file 
 
 \section{Writing print hints to 3MF file in Fusion}
+
+as a proof of concept $\rightarrow$ using Fusion's native appearances (as opposed to physical materials) to mark differentiate bodies with diverging settings
+
+these are already being saved and the big advantage is that users can create a personal library of appearances for all there models to reuse the appearance-to-parameter mapping  
+
+% \begin{itemize}
+% \item possible via add-in?
+% \item only for marking surfaces / specific triangles as ``down'', i.e. the surface to be flush with the printing bed $\rightarrow$ modifiers for now (as a proof of concept) marked via specific materials
+% \item can these be saved to Fusion's proprietary project files?
+% \item can I just add them with a custom 3mf export function or can they be written to the 3mf file using Fusion's default export? 
+% \item no need to 
+% \end{itemize}
+
+\section{Analysis of OrcaSlicer's 3MF File Processing}
+
+While chapter \ref{chap:state-of-the-art} put a focus on the state-of-the-art workflow from the user's perspective, coming up with a way to solve the problem required a deeper analysis of the way OrcaSlicer handles 3mf files since this provided some clues as well as limitations regarding possible approaches. 
+
 \begin{itemize}
-    \item possible via add-in?
-    \item only for marking surfaces / specific triangles as ``down'', i.e. the surface to be flush with the printing bed $\rightarrow$ modifiers for now (as a proof of concept) marked via specific materials
-    \item can these be saved to Fusion's proprietary project files?
-    \item can I just add them with a custom 3mf export function or can they be written to the 3mf file using Fusion's default export? 
-    \item no need to 
+    \item it does read in all the xml lines from the \textit{3dmodel.model} file including the materials but it doesn't write them to the model
+    \item the colors are being read in but due to the way Fusion saves colors in 3mf files (as explained previously), OrcaSlicer iterates over all colors per colorgroup and overwrites the `correct' (first) color with the default grey which is usually the last color per colorgroup
+    \item this was the easier part and first step to fix
+    \item it does however map the colors automatically to extruders and assigns the user's saved filaments consecutively
 \end{itemize}
 
-\section{Analysis of OrcaSlicer's 3MF file Processing}
-\begin{itemize}
-    \item it does read in all the xml lines from the \textit{3dmodel.model} file including the materials but it doesn't write them to the model 
-    \item add model diagram here 
-\end{itemize}
+\includegraphics[width=\linewidth]{Model.png}
 
 \section{Implementation Design}
 different possible approaches to solve the problem at hand and why did I do it the chosen way? 
 
 As mentioned before, as a proof of concept using specific materials to represent the possible modifiers was the way to go. 
-The idea was to save user presets locally containing a map of ``materials'', i.e. the RGBA hexcodes, to chosen modifier presets or actual filaments respectively. 
+The idea was to save user presets locally containing a map of ``materials'', i.e. the RGBA hexadecimal color codes, to chosen modifier presets or actual filaments respectively. 
 When opening a new 3MF project, the user would be prompted to either confirm the material to modifier / filament mappings or select options for newly detected materials. 
 This reduces the need to apply settings upon each import while simultaneously giving the user the option to easily change mappings. 
 

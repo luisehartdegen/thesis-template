@@ -1,4 +1,15 @@
 \chapter{State of the Art Technologies and Workflow}\label{ch:background}
+\label{chap:state-of-the-art}
+
+\begin{itemize}
+    \item general workflow without specific software 
+    \item difference in representation of 3d models between digitally targeted software (Blender), manufacturing targeted (CAD) and slicers 
+    \item 
+\end{itemize}
+
+``A standard 3D printing workflow, for example, requires disparate pieces of software, which then leave behind only a fragmented record of the fabrication process. CAD models are stored and shared as static geometry files. Separately, operators can tweak relevant settings in CAM software called a slicer, which can then be saved as a slicing profile.''[its not the shape]
+
+``CAM-based design tools have emerged where toolpaths are specified directly. This approach is contrasted with CAD-based tools which are based on geometric models [23]. CAM-based tools naturally shift focus to the machine and its settings. Prior work generates custom toolpaths using traditional CAD environments [20 , 21 ], code [ 25 , 54 , 62 ], hand-drawn sketches [23], and domain-specific abstractions [ 5 ].''[its not the shape]
 
 A short explanation of both softwares involved will provide context for the following examination of the current workflow and how it can be improved in more detail. 
 The first software, Autodesk Fusion, is used for ``design, engineering, electronics, and manufacturing [...] all-in-one''\cite{autodesk_inc_overview}. 
@@ -72,12 +83,14 @@ Just like STL files though, the model is generated as one body per file resultin
 Unlike the other two formats, 3MF not only preserves separate bodies even when exported as a single file making it more user-friendly, it also includes ``information about the model’s color, material, and textures.''\cite{iancu_about_2018}
 Initially when importing a 3mf file containing multiple objects, OrcaSlicer asks the user whether the file should be loaded as a single object with multiple parts instead of considering them as multiple objects similar to the dialog when importing multiple STL or OBJ files at once.
 
-While Fusion does export materials as RGBA colors in one hexcode per body, OrcaSlicer does not offer the user to map these to available or new presets so far. 
+While Fusion does export materials as RGBA colors in one hexadecimal color code per body, OrcaSlicer does not offer the user to map these to available or new presets so far. 
 Consequently users have to reapply materials manually which has been criticized by users, e.g. in \textit{OrcaSlicer issue \#2438}\footnote{Single Object Multiple parts with Multiple Colours: [...] I have made a number of 3D models with multiple parts in single 3mf file. I mostly use Fusion 360 for models and during modeling I assign colours to each part. But when I upload this 3mf file to the slicer, It assigns the primary filament colour to all the parts. I was wondering if the slicer would be able to distinguish the parts with different colours and assign either the original colour to the parts or even randon colours(which can be changed later).
 For example if my 3mf file has 5 colour parts, the slicer should be to detect them. Then it should find which colour has the maximum spread by area and assign the filament 1 to it. The second largest should be assigned the second filament and so on till the last.[...] \url{https://github.com/SoftFever/OrcaSlicer/discussions/2438}}.
 
 \subsection{Applying Materials}
 \label{chap:apply-materials}
+
+``For extrusion-based 3D printing, material properties such as rheology\footnote{\todo explain} or melting temperature are as relevant as machine configurations such as print speed, nozzle geometry, and heating profiles.'' [It’s Not the Shape, It’s the Settings]
 
 Generally, materials can be set using system or user defined presets per object. 
 Material settings entail, amongst others, the filament itself, nozzle temperature, general printing speed and cooling settings.
@@ -109,10 +122,10 @@ Taking a closer look at the composition of said XML file as it is exported from 
 While materials can be represented in a number of different resource tags (e.g. basematerials, m:texture2d, m:compositematerials\dots), Fusion seems to solely use the \texttt{m:colorgroup} tag. 
 Unfortunately there aren't a lot of information available as to the exact way Fusion exports 3MF, hence the following paragraph is partly based on explorative observations.
 
-The \texttt{colorgroup} contains two or more colors as an RGBA hexcode each, as mentioned before.
+The \texttt{colorgroup} contains two or more colors as an RGBA hexadecimal color code each, as mentioned before.
 Per the additional Materials and Properties Extension specification\cite{3mf_consortium_materials_2025}, colors are specifically expressed in sRGB colorspace in accordance with the World Wide Web Consortium. 
 Each group is identifiable by its \texttt{id} which is referenced in each object as \texttt{pid} while the colors themselves implicitly get a 0-based index.
-Despite the colors' representation as an RGBA hexcode, thus including an 8-bit channel for opacity, the standard specifies that color properties \textit{should not} reference translucent display properties. 
+Despite the colors' representation as an RGBA hexadecimal color code, thus including an 8-bit channel for opacity, the standard specifies that color properties \textit{should not} reference translucent display properties. 
 If required, a multi-properties group must be used instead. 
 Empirical observations indicate compliance with this requirement, as the opacity value is consistently set to \texttt{FF}, \ie a fully opaque color. 
 

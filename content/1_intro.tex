@@ -1,6 +1,13 @@
 \chapter{Introduction}\label{ch:intro}
 
-\todo revise 
+\todo revise
+
+\begin{itemize}
+    \item start anew, ignoring the abstract
+    \item focus on problem 
+    \item use workflow from literature as basis 
+    \item don't introduce figure so far ahead 
+\end{itemize}
 
 \begin{quote}
     \small
@@ -15,9 +22,10 @@ Despite automation and optimization having been a prevalent topic in the softwar
 Hence, the design engineer has to remember their settings or save them some other way, possibly by writing them down meticulously or taking screenshots. 
 
 With access to printers in public institutions becoming easier and the growing popularity of 3D printing not only within the \emph{maker} community but in casual users as well, HCI needs to focus on streamlining error-prone workflows like the one described above\cite{hudson_understanding_2016}. 
-``[C]urrent tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite{hudson_understanding_2016}
+``[C]urrent tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite{hudson_understanding_2016} \todo check if still up-to-date / relevant 
 
-This thesis focuses on the communication between CAD software and slicer, with a particular focus on proving the feasibility of `print hints'.
+This thesis focuses on the communication between CAD software and slicer, with a particular focus on proving the feasibility of `print hints'. \todo introduce print hints in more detail 
+
 The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for design engineers.
 The current prototype contains two core components: firstly, an improved export function within the CAD software \emph{Autodesk Fusion}, \eg to mark certain objects as modifiers; and second, automatic handling of materials and these print hints within the open source slicer software called \emph{OrcaSlicer}. 
 
