@@ -1,36 +1,64 @@
 \chapter{Introduction}\label{ch:intro}
 
-\todo revise
-
-\begin{itemize}
-    \item start anew, ignoring the abstract
-    \item focus on problem 
-    \item use workflow from literature as basis 
-    \item don't introduce figure so far ahead 
-\end{itemize}
-
 \begin{quote}
     \small
     It is one of the clearest paradoxes of modern work that computer-based systems designed to reduce task complexity and cognitive workload actually often impose even greater demands and stresses on the very individuals they are supposed to be helping.\cite[p.~222]{jacko_human_2012}
 \end{quote}
 
-When designing a model for 3D printing, the process frequently follows a certain set of iterative steps. 
-After the ideation phase, the design engineer first creates the model using CAD software, imports the file (\eg STL, 3MF) to a slicer software, sets the necessary parameters and finally starts printing. 
-They evaluate the result for design flaws or areas of improvement, leading to model revisions and thereby reinitiating the workflow as pictured in figure~\ref{workflow}.
-Throughout the iterations, some printing parameters will be tweaked but overall you want to keep them consistent to have a reliable comparison. 
-Despite automation and optimization having been a prevalent topic in the software developer community for years, setting the parameters is generally a manual step. 
-Hence, the design engineer has to remember their settings or save them some other way, possibly by writing them down meticulously or taking screenshots. 
+Recent years have seen a rising popularity of digital fabrication within the hobbyist or so-called maker community, as well as in educational and professional settings. 
+This growth can be attributed to the increasing availability of devices such as 3D printers, CNC milling machines and laser cutters in public spaces, along with the declining cost of these devices for end-users. 
+% todo: source & check the fachausdruck for 3d printers -> FFF printer? 
 
-With access to printers in public institutions becoming easier and the growing popularity of 3D printing not only within the \emph{maker} community but in casual users as well, HCI needs to focus on streamlining error-prone workflows like the one described above\cite{hudson_understanding_2016}. 
+% todo: fact check some numbers regarding popularity of 3d printers (number of makerspaces, how many printers sold, 3d models on Thingiverse etc.) and the composition of users (how often they use 3d printers, if they have one at home or use one in public spaces, how literate they are at 3d modeling / slicing / printing) -> statista? 
+
+The applications of this technology are diverse, ranging from toys to household items, from replacements components to artistic creations, from educational models to prototypes for mass manufacturing, and ultimately to finished products in the emerging market of customised mass production, exemplified by websites such as \textit{Thingiverse.com}, where users can upload their 3D models. 
+
+Initially, when the technology became widely available, the user base consisted primarily of individuals who were not only interested in the final result, but also demonstrated a keen interest in the technology itself and the process of creating models and setting up the printer. 
+It is from this community that the so-called \textit{makerspaces} emerged.
+These are spaces that provide affordable access to digital fabrication tools and act as knowledge hubs, often with financial support from their users.
+
+Since then, there has been a considerable enhancement in the usability and automation of 3D printers,  thereby rendering the technology more accessible to casual users. 
+As was the case with programming in previous decades, 3D printing has found it's way into education to teach various skills, including design, engineering and project management. 
+``An additional benefit of digital fabrication is that it accelerates the processes of ideation and invention. It eliminates manual dexterity as the ‘middleman’ in transforming an idea into a product, so students can focus their attention on improving the design rather than taking care of mundane issues with the materials – and many more cycles of redesign are possible in the same time interval.''[FabLab of Machines Maker]
+
+Nowadays 3D printers are oftentimes available in schools and libraries as well, where the staff might not be as knowledgeable or well trained as in makerspaces.
+This leads to a more diversified user base in terms of knowledge, intent to learn and focus on technology versus a means to an end, \ie the final result. 
+
+Despite these differences, the workflow from idea to finished product generally consists of the same steps across the board.
+Using a simple box with a snap-fit closure and multiple filament colors as an example, the workflow would be as follows.\cite{hudson_understanding_2016} 
+
+\begin{enumerate}
+    \item 3D Model: After coming up with an idea, the user either creates the 3D model from scratch or downloads one from the various databases available online and optionally modifies it. 
+    \item Print Setup: They have to choose the printing material for the different parts, \eg printing the box itself in white PLA and the text in a different color PLA, and set at the very least the temperature according to the materials specifications. Oftentimes further parameters or presets are needed to determine factors like supports\footnote{\todo definition}, infill, speed and heating bed temperature. In this case, the green boxes around the closure would have to be marked as modifiers to increase the wall loops in the main model for added stability. The box is designed to be printed as two separate bodies, one for the top and the bottom each, which means the top has to be accordingly placed on the printing bed. 
+    \item Slicing: The model then has to be translated into layer-by-layer instructions for the printer. 
+    \item Printing: After inserting the chosen materials into the printer and optionally calibrating, the model can be printed. 
+    \item Evaluation: Especially for newcomers and casual makers, the print might not turn out perfect on the first try. Therefore the print has to be evaluated for design flaws or printing errors. This often leads to revisions in the model itself or the print setup, starting a new iteration of the workflow. 
+\end{enumerate}
+
+\begin{wrapfigure}[11]{r}{0.4\linewidth}
+    \vspace{-10pt}
+    \includegraphics[width=\linewidth]{3dmodel_box.png}
+    \caption{3D model as example}
+    \label{simple-3d-model-box}
+\end{wrapfigure}
+
+Due to the highly specific use cases and quite different requirements, a ``standard 3D printing workflow [...] requires disparate pieces of software, which then leave behind only a fragmented record of the fabrication process. CAD models are stored and shared as static geometry files. Separately, operators can tweak relevant settings in CAM software called a slicer, which can then be saved as a slicing profile.''[its not the shape]
+
+With a wider and more diverse user base, discussions about how to streamline the process, lower hurdles and simplify the sometimes rather complex steps involved have increased in the scientific HCI\footnote{human-computer interaction} community.\cite{hudson_understanding_2016} % todo: more sources! 
+Even though the technology itself improved in regards to usability and maintainability, the skills required to operate a 3D printer remain high. [PrintAssist]
+
+Various different approaches have been documented to tackle this problem, ranging from easier 3D modeling software, improved process documentation[its not the shape] or even chatbots as human-machine interfaces. [PrintAssist]
 ``[C]urrent tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite{hudson_understanding_2016} \todo check if still up-to-date / relevant 
 
-This thesis focuses on the communication between CAD software and slicer, with a particular focus on proving the feasibility of `print hints'. \todo introduce print hints in more detail 
+One such aspect concerns printing parameters and particularly the need for documentation either to be able to recreate the conditions or to get support with previous configurations in case something went wrong.
+To have consistent results when comparing different iterations of one's print, printing parameters shouldn't changed unless specifically identified as a problem. 
+This does however raise the need for users to either remember their settings or document them in some way, oftentimes outside of the software used.
+Partly slicer software provides an option to save settings in the form of user presets but as soon as the project becomes more complex, the user still has to remember or document which presets they used for which parts. [3D Printers as Sociable Technologies] % todo: check if the source actually says something like it 
 
-The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for design engineers.
-The current prototype contains two core components: firstly, an improved export function within the CAD software \emph{Autodesk Fusion}, \eg to mark certain objects as modifiers; and second, automatic handling of materials and these print hints within the open source slicer software called \emph{OrcaSlicer}. 
+Focusing on the connection between parts of the model and applied settings, the solution presented in this paper analyses the feasibility of the use of `print hints' early on in the process to improve the interdependency of modeling and slicer software and the overall user experience. 
+Print hints are markers, added to the model during the 3D modeling phase that the slicer can process semi-automatically. 
+The idea is to offer the user the option to map the markers to their own filament or modifier presets while simultaneously saving the resulting mapping upon importing the model to the slicer. 
+Thus if the same maker is reused in a new iteration or even a new model, the interface can apply the mapped preset while still giving the user the option to change it. 
 
-basic (HCI) aspects in which I want to improve the workflow (possibly to be referenced in the following texts) $\rightarrow$ what does it solve
-\begin{itemize}
-    \item sharing files with slicer but not printer specific settings 
-    \item how it reduces cognitive workload in repetitive steps
-\end{itemize}
+The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for users.
+The prototype presented in the following thesis focuses mainly on improving the workflow using already available options while simultaneously introducing a new user interface and consequently changed handling when opening the 3d model in the slicer.

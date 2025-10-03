@@ -1,56 +1,19 @@
-\chapter{State of the Art Technologies and Workflow}\label{ch:background}
-\label{chap:state-of-the-art}
+\chapter{Background and Related Work}\label{ch:background}
+\label{chap:background}
 
-\begin{itemize}
-    \item general workflow without specific software 
-    \item difference in representation of 3d models between digitally targeted software (Blender), manufacturing targeted (CAD) and slicers 
-    \item 
-\end{itemize}
+some clever bridge from problem to technical and related background
 
-``A standard 3D printing workflow, for example, requires disparate pieces of software, which then leave behind only a fragmented record of the fabrication process. CAD models are stored and shared as static geometry files. Separately, operators can tweak relevant settings in CAM software called a slicer, which can then be saved as a slicing profile.''[its not the shape]
+to understand\dots
 
-``CAM-based design tools have emerged where toolpaths are specified directly. This approach is contrasted with CAD-based tools which are based on geometric models [23]. CAM-based tools naturally shift focus to the machine and its settings. Prior work generates custom toolpaths using traditional CAD environments [20 , 21 ], code [ 25 , 54 , 62 ], hand-drawn sketches [23], and domain-specific abstractions [ 5 ].''[its not the shape]
+research indicates\dots
 
-A short explanation of both softwares involved will provide context for the following examination of the current workflow and how it can be improved in more detail. 
-The first software, Autodesk Fusion, is used for ``design, engineering, electronics, and manufacturing [...] all-in-one''\cite{autodesk_inc_overview}. 
-It provides functionalities for the ``entire product development process [...] with integrated 3D CAD, CAM, CAE, and PCB''\cite{autodesk_inc_overview}, meaning it can be used for designing parts to manufacture in either additive or subtractive processes. 
-Mainly relevant to the process at hand is the CAD (Computer Aided Design) functionality. 
-Contrary to 3D modelling software like Blender intended for purely digital products, CAD is based on precise measurements, taking into account not only the surface but also the body's volume. 
-It provides visualization tools for examining and analyzing designs, as well as simulation capabilities, for example, to assess how different components interact or respond to various mechanical stresses.
+beginning the inquiry\dots
 
-Slicer software on the other hand imports a 3D model and ``slices [it] into layers for the printer [...] allow[ing] users to select print settings, such as layer height and print speed''\cite{hudson_understanding_2016}
-It therefore translates the model into step-by-step commands for a specific printer.
-There are many different slicers available online nowadays, either general ones or ones specific to printer manufacturers. Since ``getting all the settings right for a particular 3D printer can be fiddly, a lot of manufacturers modify one of these open source programs and create a proprietary program just for their machine.''\cite[p.~58]{horvath_mastering_2018}
-\textit{OrcaSlicer} is one the open source slicers, originally forked from \textit{Bambu Studio}, which itself was forked from \textit{PrusaSlicer}, a descendant of \textit{Slic3r}. 
-``Slic3r is licensed under the GNU Affero General Public License, version 3''\cite{softfever_orcaslicerdoc_nodate}, which means that every software using parts of it has to be licensed under the same license.
-Since these slicers are all intricately linked, oftentimes new features are being introduced in one of them and then pulled over into the others as well.
+\section{State-of-the-art Workflow}
 
-OrcaSlicer always handles files as projects, either by interpreting 3MF files as a project in itself or by opening a file within a new project. 
-That way the user has the option to save project specific settings or presets for further use or just export the generated g-code for printing and discard said settings. 
+using the model from chap 1 as an example 
 
-\section{State of the Art Workflow from Fusion to OrcaSlicer}
-
-\begin{wrapfigure}[11]{r}{0.48\linewidth}
-    \vspace{-10pt}
-    \includegraphics[width=\linewidth]{3dmodel_box.png}
-    \caption{3D model of simple box}
-    \label{simple-3d-model-box}
-\end{wrapfigure}
-
-When analyzing the process from idea to print, several main steps can be identified as shown in \ref{workflow}. 
-``[Y]ou need to create or acquire a 3D computer-aided design (CAD) model, slice this model into layers and generate the commands needed to physically create the model, and, finally, physically create the print.''\cite[p.~52]{horvath_mastering_2018}
-Using a simple box with a snap-fit closure and two different filament colors as an example, the following analysis will focus on the steps from exporting a model to printing, highlighting in particular how the workflow differs depending on the file format used in regards to three points.
-
-\begin{enumerate}
-    \item A model consisting of multiple parts, some of which are not positioned on the surface they need to be printed on (e.g. the lid)
-    \item Using multiple materials (e.g. printing the text in a different color)
-    \item Using model parts as modifiers (e.g. the translucent green boxes as modifiers to print more wall loops in the closure's area for higher stability)
-\end{enumerate} 
-
-Exporting the model from Fusion is possible via two dialogs: the general export and the 3D print specific one.
-The two dialogs each offer a different set of file formats due to their different purposes.
-Since this analysis deals with 3D printing in particular, only the export dialog specific to 3D printing will be considered, which offers to export as STL, 3MF and OBJ format. 
-For all three the user can decide whether to generate one file containing all selected components and bodies, or one file per body. 
+from 3d modeling to evaluation $\rightarrow$ general, no specific software or file formats
 
 \begin{figure}[h]
     \centering
@@ -59,59 +22,86 @@ For all three the user can decide whether to generate one file containing all se
     \label{workflow}
 \end{figure}
 
-\subsection{Exporting as STL}
+When analyzing the process from idea to final result, several main steps can be identified as shown in \ref{workflow}. 
+``[Y]ou need to create or acquire a 3D computer-aided design (CAD) model, slice this model into layers and generate the commands needed to physically create the model, and, finally, physically create the print.''\cite[p.~52]{horvath_mastering_2018}
 
-Exporting the model as an STL file immediately shows one important distinction. 
-``STL native files describe only the surface geometry of a three dimensional object without any representation of color, texture or other common CAD model attributes,''\cite{iancu_about_2018} meaning that even if a user applies materials in Fusion, that information won't be exported, and the user has to apply all materials anew in OrcaSlicer. 
+two parts requiring highly specific knowledge: 3d modeling and setting the model up to print 
+
+as previously mentioned, repetitive manual steps are necessary during the slicer setup when considering the following three aspects 
+
+\begin{enumerate}
+    \item Using multiple materials (e.g. printing the text in a different color)
+    \item Using model parts as modifiers (e.g. the translucent green boxes as modifiers to print more wall loops in the closure's area for higher stability)
+    \item A model consisting of multiple parts, some of which are not positioned on the surface they need to be printed on (e.g. the lid)
+\end{enumerate} 
+
+\section{3D Modeling Software}
+
+when realizing an idea from scratch, rather than downloading an available model online and modifying it, the user would create their own model using 3D modeling software
+
+this software is used to transform an idea or a 2d sketch into a 3D solid or surface representation, meaning that it describes the external geometry fully [additive manufacturing technology]
+
+difference between modeling for digital target (only surface) vs. physical / manufacturing targeted (volumes, closure of surface)
+
+$\rightarrow$ let's focus on manufacturing targeted 3D modeling
+
+while they often provide functionalities for several different processes, computer-aided design (CAD) is the most relevant at hand 
+
+modeling software targeted for digital products, like animation, focuses on positioning and forming models or parts thereof by sight 
+
+modeling software for manufacturing purposes on the other hand is built on precise measurements, often starting from one or more 2d sketches and then extruding and cutting parts based off of these sketches 
+
+the final result can be described either by a consecutive order of instructions or by a polygonal structure \todo fact check 
+
+what is it 
+
+how does it represent 3D models 
+
+\section{Slicer}
+
+``The key to how AM\footnote{Additive Manufacturing} works is that parts are made by adding material in layers; each layer is a thin cross-section of the part derived from the original CAD data.''[Additive Manufacturing Technologies]
+
+what is it 
+
+how does it represent 3D models 
+
+Slicer software on the other hand imports a 3D model and ``slices [it] into layers for the printer [...] allow[ing] users to select print settings, such as layer height and print speed''\cite{hudson_understanding_2016}
+It therefore translates the model into step-by-step commands for a specific printer.
+There are many different slicers available online nowadays, either general ones or ones specific to printer manufacturers. Since ``getting all the settings right for a particular 3D printer can be fiddly, a lot of manufacturers modify one of these open source programs and create a proprietary program just for their machine.''\cite[p.~58]{horvath_mastering_2018}
+
+and how most slicers available today are somewhat related 
+
+\section{File Formats used in 3D Printing Context}
+
+explanation of file formats in approximately the same depth each 
+
+\subsection{STL}
+
+``STL native files describe only the surface geometry of a three dimensional object without any representation of color, texture or other common CAD model attributes,''\cite{iancu_about_2018} meaning that even if a user applies materials during the modeling stage, that information won't be exported, and the user has to apply all materials anew before slicing. 
 
 Furthermore there will always be one body in the resulting file, even if the model is comprised of multiple bodies within Fusion. 
 Therefore the user has to choose whether to combine all bodies into one or exporting each body as a separate file.
-The first option results in one extra step to split the model into separate objects within OrcaSlicer to be able to print the text in a different color or to use the green boxes as modifiers. 
+
 Alternatively exporting each body as a separate file might loose their spatial relations to each other while keeping the bodies separate.
-OrcaSlicer does however ask the user whether the files should be loaded as a single object with multiple parts. 
-The advantage over loading each file as an object is the preservation of the spatial relation and thus parts, like the modifiers in the example box, can be placed at any height while a single object is always placed with at least one surface flush with the printing plate. 
 
-\subsection{Exporting as OBJ}
+\subsection{OBJ}
 
-The OBJ file format ``is the preferred 3D printer file format for multicolor printing''.\cite{iancu_about_2018}
-Consequently, OrcaSlicer shows a particular dialog (fig. \ref{fig:obj_color_dialog}) when opening an OBJ file, asking the user how they want to map the file's colors to current or new filament presets.
-This makes it easy for users to align filament colors (i.e. the color the filament is represented as in OrcaSlicer, not necessarily the color of the filament itself) to colors applied in Fusion.
-Just like STL files though, the model is generated as one body per file resulting in the same dialogs and extra steps.
+The OBJ file format is considered to be the preferred 3D printer file format for multicolor printing.\cite{iancu_about_2018}
 
-\subsection{Exporting as 3MF}
+Just like STL files though, the model is generated as one body per file 
+
+
+\subsection{AMF and 3MF}
+
+a note on AMF vs 3MF?
+
+\textcolor{red}{\textit{NO REFERENCING FUSION OR ORCASLICER HERE}}
 
 Unlike the other two formats, 3MF not only preserves separate bodies even when exported as a single file making it more user-friendly, it also includes ``information about the model’s color, material, and textures.''\cite{iancu_about_2018}
-Initially when importing a 3mf file containing multiple objects, OrcaSlicer asks the user whether the file should be loaded as a single object with multiple parts instead of considering them as multiple objects similar to the dialog when importing multiple STL or OBJ files at once.
-
-While Fusion does export materials as RGBA colors in one hexadecimal color code per body, OrcaSlicer does not offer the user to map these to available or new presets so far. 
-Consequently users have to reapply materials manually which has been criticized by users, e.g. in \textit{OrcaSlicer issue \#2438}\footnote{Single Object Multiple parts with Multiple Colours: [...] I have made a number of 3D models with multiple parts in single 3mf file. I mostly use Fusion 360 for models and during modeling I assign colours to each part. But when I upload this 3mf file to the slicer, It assigns the primary filament colour to all the parts. I was wondering if the slicer would be able to distinguish the parts with different colours and assign either the original colour to the parts or even randon colours(which can be changed later).
-For example if my 3mf file has 5 colour parts, the slicer should be to detect them. Then it should find which colour has the maximum spread by area and assign the filament 1 to it. The second largest should be assigned the second filament and so on till the last.[...] \url{https://github.com/SoftFever/OrcaSlicer/discussions/2438}}.
-
-\subsection{Applying Materials}
-\label{chap:apply-materials}
-
-``For extrusion-based 3D printing, material properties such as rheology\footnote{\todo explain} or melting temperature are as relevant as machine configurations such as print speed, nozzle geometry, and heating profiles.'' [It’s Not the Shape, It’s the Settings]
-
-Generally, materials can be set using system or user defined presets per object. 
-Material settings entail, amongst others, the filament itself, nozzle temperature, general printing speed and cooling settings.
-OrcaSlicer actively asks the user, whether they want to save any changes to material parameters they have made, which makes it easy to save either parameters specific to one's printer and filament or even specific to one project while simultaneously keeping default material presets untouched.
-When importing a new file or project, OrcaSlicer does apply the first available user preset filament by default. 
-More detailed analysis even showed, that a multicolor file will be imported with different filaments assigned consecutively but the user doesn't have any options to map colors to filaments the way it works with OBJ files. 
-Furthermore, the last color per colorgroup (more details in the following chapter \ref{chap:3mf}) is assigned to each object which is why even complex models with different colors appear as having one single material in OrcaSlicer. 
-
-\subsection{Applying Settings with and without Presets}
-\label{chap:apply-settings}
-
-Settings like the amount of wall loops, infill percentage and pattern, and printing speed for single layers might need to be customized. 
-It is possible to save these as presets as well, however only globally, \ie they can only be applied to the entire project, not to specific objects within.
-As criticized in the \textit{OrcaSlicer Issue \#7769}\footnote{Copy/paste per-object settings: When planning/building large projects in-slicer it often becomes an extremely tedious task to click all the objects you want a specific set of settings to apply to. The larger the assembly/project you are planning, the easier it is to miss a body and make a mistake. If you "assemble" models together you cannot edit multiple sub-objects across assemblies.\\ \url{https://github.com/SoftFever/OrcaSlicer/issues/7769}}, particularly for projects containing multiple objects, using presets in this case is not a valid option. 
-
-\section{The 3MF File Format}
-\label{chap:3mf}
 
 While each of the three file formats mentioned have their own advantages and disadvantages, preliminary analysis indicated that the 3MF format represents the most suitable solution for the problem at hand.
 3MF has been developed by the 3MF Consortium, founded by Microsoft, Autodesk, HP, 3D Systems, Prusa Research and several other key players in the field, to create a 3D printing file format that addresses the shortcomings of previous standards (STL, OBJ, AMF).
-In particular the possibility for extensions and the support of colors as well as several different 3D model representations were a main factor, making it ideal for state-of-the-art additive manufacturing.\cite{rossel_security_2023}
+In particular the possibility for extensions and the support of colors as well as several different 3D model representations were a main factor, making it ideal for background additive manufacturing.\cite{rossel_security_2023}
 
 \input{figures/3mf_file_structure.tex}
 
@@ -139,3 +129,98 @@ Meshes of different objects may intersect (as seen in the above mentioned exampl
 A so-called PrintTicket can be attached to each 3D model part detailing user intent and device configuration information for printers. This might be useful for the intended purpose of print hints but has not been further pursued as an idea due to the way, the file is being handled in \textit{OrcaSlicer}.
 
 In regards to adding print hints directly to the model's xml structure, it shall be noted that in accordance with the specification ``XML content MUST NOT contain elements or attributes drawn from the "xml" or "xsi" namespaces unless they are explicitly defined in the XSD schema or by other means in the specification.''\cite{3mf_consortium_3mf_2025}
+
+\section{Workflow using Autodesk Fusion and OrcaSlicer}
+
+the following analysis will focus on the steps from exporting a model to printing using two specific softwares as example, highlighting in particular how the workflow differs depending on the file format used in regards to three points.
+
+\subsection{\textit{Autodesk Fusion}}
+
+The first software, Autodesk Fusion, is used for designing, engineering, simulating electronics and as basis for manufacturing\cite{autodesk_inc_overview}
+
+It provides functionalities for the entire product development process with support for various different techniques\cite{autodesk_inc_overview}, meaning it can be used for designing parts to manufacture in either additive or subtractive processes 
+
+It also provides visualization tools for examining and analyzing designs, as well as simulation capabilities, for example, to assess how different components interact or respond to various mechanical stresses.
+
+\subsection{OrcaSlicer}
+
+\textit{OrcaSlicer} is one the open source slicers, originally forked from \textit{Bambu Studio}, which itself was forked from \textit{PrusaSlicer}, a descendant of \textit{Slic3r}. 
+``Slic3r is licensed under the GNU Affero General Public License, version 3''\cite{softfever_orcaslicerdoc_nodate}, which means that every software using parts of it has to be licensed under the same license.
+Since these slicers are all intricately linked, oftentimes new features are being introduced in one of them and then pulled over into the others as well.
+
+
+
+Exporting the model from Fusion is possible via two dialogs: the general export and the 3D print specific one.
+The two dialogs each offer a different set of file formats due to their different purposes.
+Since this analysis deals with 3D printing in particular, only the export dialog specific to 3D printing will be considered, which offers to export as STL, 3MF and OBJ format. 
+For all three the user can decide whether to generate one file containing all selected components and bodies, or one file per body. 
+
+\subsection{Exporting as STL}
+
+when combining all bodies into one STL file $\rightarrow$ one extra step to split the model into separate objects within OrcaSlicer to be able to print the text in a different color or to use the green boxes as modifiers 
+
+when importing multiple files at once $\rightarrow$ OrcaSlicer has the user confirm whether the files should be loaded as a single object with multiple parts 
+
+The advantage over loading each file as an object is the preservation of the spatial relation and thus parts, like the modifiers in the example box, can be placed at any height while a single object is always placed with at least one surface flush with the printing plate. 
+
+
+\subsection{Exporting as OBJ}
+
+\begin{wrapfigure}[16]{l}{0.45\linewidth}
+    \vspace{-13pt}
+  \includegraphics[width=\linewidth]{obj_color_dialog.png}
+  \label{fig:obj_color_dialog}
+  \caption{OBJ color mapping dialog in OrcaSlicer}
+\end{wrapfigure}
+
+\colorbox{Peach}{cite software? \& check formatting for dialog} 
+
+Consequently, OrcaSlicer shows a particular dialog (fig. \ref{fig:obj_color_dialog}) when opening an OBJ file, asking the user how they want to map the file's colors to current or new filament presets.
+This makes it easy for users to align filament colors (i.e. the color the filament is represented as in OrcaSlicer, not necessarily the color of the filament itself) to colors applied in Fusion.
+one body per file $\rightarrow$ in the same dialogs and extra steps.
+
+
+\subsection{Exporting as 3MF}
+
+Unlike the other two formats, 3MF not only preserves separate bodies even when exported as a single file making it more user-friendly, it also includes ``information about the model’s color, material, and textures.''\cite{iancu_about_2018}
+Initially when importing a 3mf file containing multiple objects, OrcaSlicer asks the user whether the file should be loaded as a single object with multiple parts instead of considering them as multiple objects similar to the dialog when importing multiple STL or OBJ files at once.
+
+While Fusion does export materials as RGBA colors in one hexadecimal color code per body, OrcaSlicer does not offer the user to map these to available or new presets so far. 
+Consequently users have to reapply materials manually which has been criticized by users, e.g. in \textit{OrcaSlicer issue \#2438}\footnote{Single Object Multiple parts with Multiple Colours: [...] I have made a number of 3D models with multiple parts in single 3mf file. I mostly use Fusion 360 for models and during modeling I assign colours to each part. But when I upload this 3mf file to the slicer, It assigns the primary filament colour to all the parts. I was wondering if the slicer would be able to distinguish the parts with different colours and assign either the original colour to the parts or even randon colours(which can be changed later).
+For example if my 3mf file has 5 colour parts, the slicer should be to detect them. Then it should find which colour has the maximum spread by area and assign the filament 1 to it. The second largest should be assigned the second filament and so on till the last.[...] \url{https://github.com/SoftFever/OrcaSlicer/discussions/2438}}.
+
+OrcaSlicer always handles files as projects, either by interpreting 3MF files as a project in itself or by opening a file within a new project. 
+That way the user has the option to save project specific settings or presets for further use or just export the generated g-code for printing and discard said settings. 
+
+
+
+fuse next two subsections $\rightarrow$ clear difference between \textit{filament}, \textit{settings}, \textit{parameters} etc if using em 
+
+\subsection{Applying Materials}
+\label{chap:apply-materials}
+
+``For extrusion-based 3D printing, material properties such as rheology\footnote{\todo explain} or melting temperature are as relevant as machine configurations such as print speed, nozzle geometry, and heating profiles.'' [It’s Not the Shape, It’s the Settings]
+
+Generally, materials can be set using system or user defined presets per object. 
+Material settings entail, amongst others, the filament itself, nozzle temperature, general printing speed and cooling settings.
+OrcaSlicer actively asks the user, whether they want to save any changes to material parameters they have made, which makes it easy to save either parameters specific to one's printer and filament or even specific to one project while simultaneously keeping default material presets untouched.
+When importing a new file or project, OrcaSlicer does apply the first available user preset filament by default. 
+More detailed analysis even showed, that a multicolor file will be imported with different filaments assigned consecutively but the user doesn't have any options to map colors to filaments the way it works with OBJ files. 
+Furthermore, the last color per colorgroup (more details in the following chapter \ref{chap:3mf}) is assigned to each object which is why even complex models with different colors appear as having one single material in OrcaSlicer. 
+
+\subsection{Applying Settings with and without Presets}
+\label{chap:apply-settings}
+
+Settings like the amount of wall loops, infill percentage and pattern, and printing speed for single layers might need to be customized. 
+It is possible to save these as presets as well, however only globally, \ie they can only be applied to the entire project, not to specific objects within.
+As criticized in the \textit{OrcaSlicer Issue \#7769}\footnote{Copy/paste per-object settings: When planning/building large projects in-slicer it often becomes an extremely tedious task to click all the objects you want a specific set of settings to apply to. The larger the assembly/project you are planning, the easier it is to miss a body and make a mistake. If you "assemble" models together you cannot edit multiple sub-objects across assemblies.\\ \url{https://github.com/SoftFever/OrcaSlicer/issues/7769}}, particularly for projects containing multiple objects, using presets in this case is not a valid option. 
+
+
+
+
+
+\section{Related Work and Available Solutions}
+
+``CAM-based design tools have emerged where toolpaths are specified directly. This approach is contrasted with CAD-based tools which are based on geometric models [23]. CAM-based tools naturally shift focus to the machine and its settings. Prior work generates custom toolpaths using traditional CAD environments [20 , 21 ], code [ 25 , 54 , 62 ], hand-drawn sketches [23], and domain-specific abstractions [ 5 ].''[its not the shape]
+
+how do others solve the issue $\rightarrow$ focus on documentation [its not the shape]
