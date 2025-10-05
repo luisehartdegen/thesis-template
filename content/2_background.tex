@@ -83,85 +83,68 @@ Since printers have different dimension, the heating bed as well as the availabl
 Users have the option of setting this up manually, however more commonly the slicer accesses a list of printers, oftentimes from various manufacturers, for the user to select one from. 
 These dimensions are important to arrange parts in an efficient way to print, in case the model consists of multiple parts.
 
-The software also provides a selection of generic and manufacturer specific filament presets containing specifications such as the filament's name and material, recommended printing and heating bed temperature, and printing speed. 
+The software also provides a selection of generic as well as manufacturer specific filament presets containing specifications such as the filament's name and material, recommended printing nozzle and heating bed temperature, and printing speed. 
+From these the user can create their own filament presets, tweaking parameters to accommodate for their own needs to reuse the settings across projects. 
+Further printing parameters that need to be frequently changed include quality related parameters (layer height, line width, precision, bridging), parameters regarding the model's strength (wall loops, top and bottom shell thickness, infill amount and type) as well as the type of support and thresholds where supports need to be applied. 
 
+When the model is sufficiently set up, the slicer translates it into layers, described as paths for the printer to follow. 
+Due to the nature of this process, the slicer handles projects in two different ways. 
+Before slicing, the 3D model needs to be saved as a project including all parameters as defined by the user in a way, so it can be loaded and updated at a later point, independent of the printer to be used. 
+For this step, slicers generally use either the open-source format 3MF or a proprietary file format. 
+The sliced model file, on the other hand, needs to be specific to one printer ecosystem and is usually saved as gcode or bgcode files. % todo: fact check
 
-manage default and user defined filament presets and apply them to the model's parts $\rightarrow$ filament settings incl. printing temperature (nozzle), temperature of heating bed, printing speed as well as some more involved specifications like cooling settings when using the filament and tool change parameters for multicolor usage
-
-some settings can be applied globally (for all parts equally) or per part, like quality related parameters (layer height, line width, precision, bridging), some relating to the model's strength (wall loops, top \& bottom shells, infill), supports (type, thresholds)
-add supports, infill (type and amount)
-
-the model with all its settings is then, as the name suggests, sliced into layers, which are translated into paths for the printer to follow 
-
-how does it represent 3D models $\rightarrow$ first as a project to save for future modifying and secondly to transfer printable data to the printing device 
-
-
-There are many different slicers available online nowadays, either general ones or ones specific to printer manufacturers. 
-Since getting all the settings right for a particular 3D printer can be difficult, some manufacturers prefer to modify one of the open source programs, creating a version just for their machine.\cite[p.~58]{horvath_mastering_2018} 
+There are many different slicers available online nowadays, either general ones or specific to one printer manufacturer. 
+Since getting all the settings right for a particular 3D printer can be difficult, some manufacturers prefer to modify one of the open source programs, creating a version for their machines.\cite[p.~58]{horvath_mastering_2018} 
 Thus, most of the commonly used slicers today are based on the same code base, derived from an ancestor called Slic3r. 
+Due to the similarity in code base and the need to keep these projects open-source\footnote{Slic3r is licensed under the GNU Affero General Public License, version 3, which states that every software using parts of it has to be subject to the same license.}, useful features are oftentimes introduced in one version and then ported to the other ones. 
 
-manage printers $\rightarrow$ even slicers provided by printer manufacturers often provide support for printers from other companies 
-
-and how most slicers available today are somewhat related 
 
 \section{File Formats used in 3D Printing Context}
 
-explanation of file formats in approximately the same depth each $\rightarrow$ how old, what does it contain
+There are various different file formats available to represent 3D models in general, however not all are equally appropriate for digital fabrication. 
+Hence, the following paragraphs will delve into the three formats used most in 3D printing.
 
 \subsection{STL}
 
-``STL native files describe only the surface geometry of a three dimensional object without any representation of color, texture or other common CAD model attributes,''\cite{iancu_about_2018} meaning that even if a user applies materials during the modeling stage, that information won't be exported, and the user has to apply all materials anew before slicing. 
+The STL (``STereoLithography'') format has been introduced in the 1980's and since then acquired support by most softwares in use for digital fabrication. 
+It is considered to be the most well-known and used mesh file format, even though it has rigorous limitations.
+The contents can be either encoded in binary or in ASCII text format, the latter of which is less common, but used for illustration and educational purposes. 
+It describe an approximation of the surface geometry in the form of a mesh of triangles, each identified by a unit normal vector as well as three vertices, as seen in \ref{lst:stl_example}.
+The normal vector is equal to the length ``1'', however it does not specify whether the dimensions are millimeter, inches or another unit entirely. 
+Thus, while the proportions of a model will remain preserved, the overall size depends on the user's knowledge about the model. 
+Due to its simplicity, the file does not contain information regarding color, text or other common CAD model attributes.[Additive Manufacturing Technologies, p.~341 ff][3D Printing with Fusion, Chapter 5]
 
-Furthermore there will always be one body in the resulting file, even if the model is comprised of multiple bodies within Fusion. 
-Therefore the user has to choose whether to combine all bodies into one or exporting each body as a separate file.
+Furthermore, since the specification requires each triangle to share two of its vertices with the triangle adjacent to it, thus creating one continuous solid model, technically there will always be exactly one body in the resulting file. 
+For a model comprised of multiple parts, the user therefore has to choose whether to combine all bodies into one or export each body as a separate file.
+However, modern slicer software is capable of separating parts into disparate bodies, even if the user chooses to export a multibody model into one file. 
 
-Alternatively exporting each body as a separate file might loose their spatial relations to each other while keeping the bodies separate.
+% explanation of file formats in approximately the same depth each $\rightarrow$ 
+% how old
+% what does it contain
+% how prevalent in use 
 
 \subsection{OBJ}
 
-The OBJ file format is considered to be the preferred 3D printer file format for multicolor printing.\cite{iancu_about_2018}
+The OBJ file format is considered to be the second most common file format as it contains color and texture information in addition to the options STL presents.
+As can be seen in \ref{lst:obj_3d_model}, the model is represented by vertices as well. 
+Each group of vertices is prefaced by a body name and optionally a material, referencing a separate \texttt{.mtl} file. 
 
-Just like STL files though, the model is generated as one body per file 
+
+\todo \todo \todo 
 
 
-\subsection{AMF and 3MF}
+\subsection{3MF}
 
-a note on AMF vs 3MF?
-
-\textcolor{red}{\textit{NO REFERENCING FUSION OR ORCASLICER HERE}}
-
-Unlike the other two formats, 3MF not only preserves separate bodies even when exported as a single file making it more user-friendly, it also includes ``information about the model’s color, material, and textures.''\cite{iancu_about_2018}
-
-While each of the three file formats mentioned have their own advantages and disadvantages, preliminary analysis indicated that the 3MF format represents the most suitable solution for the problem at hand.
 3MF has been developed by the 3MF Consortium, founded by Microsoft, Autodesk, HP, 3D Systems, Prusa Research and several other key players in the field, to create a 3D printing file format that addresses the shortcomings of previous standards (STL, OBJ, AMF).
-In particular the possibility for extensions and the support of colors as well as several different 3D model representations were a main factor, making it ideal for background additive manufacturing.\cite{rossel_security_2023}
+In particular the possibility for extensions and the support of colors as well as several different 3D model representations were a main factor, making it ideal for additive manufacturing.\cite{rossel_security_2023}
+
+Unlike the other two formats, 3MF not only preserves separate bodies even when exported as a single file making it more user-friendly, it also includes information about the model’s color, material, and textures.
 
 \input{figures/3mf_file_structure.tex}
 
-``A 3MF file is a ZIP archive that contains a complex file structure, defining a 3D model in Extensible Markup Language (XML) file''\cite{rossel_security_2023} usually called \texttt{3dmodel.model}, as seen in \ref{3mf_file_structure}. Optionally, there can be multiple 3D model files, one of which needs to be identified in the StartPart relationship as the root model.
-The 3D model part is comprised of two sections per specification: ``a set of resource definitions that include objects and materials, as well as a set of specific items to actually build''.\cite{3mf_consortium_3mf_2025}
+``A 3MF file is a ZIP archive that contains a complex file structure, defining a 3D model in Extensible Markup Language (XML) file''\cite{rossel_security_2023} usually called. 
+Optionally, there can be multiple 3D model files, one of which needs to be identified in the StartPart relationship as the root model.
 
-Taking a closer look at the composition of said XML file as it is exported from Fusion, see \ref{lst:3dmodel.model}, these sections can be found in lines 4 ff. (the \texttt{resources} tag), enclosing the \texttt{m:colorgroup} and \texttt{object} tags, and lines 41 ff. containing the \texttt{build} tag.
-While materials can be represented in a number of different resource tags (e.g. basematerials, m:texture2d, m:compositematerials\dots), Fusion seems to solely use the \texttt{m:colorgroup} tag. 
-Unfortunately there aren't a lot of information available as to the exact way Fusion exports 3MF, hence the following paragraph is partly based on explorative observations.
-
-The \texttt{colorgroup} contains two or more colors as an RGBA hexadecimal color code each, as mentioned before.
-Per the additional Materials and Properties Extension specification\cite{3mf_consortium_materials_2025}, colors are specifically expressed in sRGB colorspace in accordance with the World Wide Web Consortium. 
-Each group is identifiable by its \texttt{id} which is referenced in each object as \texttt{pid} while the colors themselves implicitly get a 0-based index.
-Despite the colors' representation as an RGBA hexadecimal color code, thus including an 8-bit channel for opacity, the standard specifies that color properties \textit{should not} reference translucent display properties. 
-If required, a multi-properties group must be used instead. 
-Empirical observations indicate compliance with this requirement, as the opacity value is consistently set to \texttt{FF}, \ie a fully opaque color. 
-
-Since it is possible in Fusion to apply appearances and physical materials independently of one another, one might think one color represents the appearance and the other the physical material. 
-Observations, however, do not support this theory since even when changing both, only the first color within one colorgroup changes while the second one stays a light grey (``\#A0A0A0FF'').
-
-The following \texttt{object} tags each contain attributes (body id, type, color id) as well as one triangular geometry mesh representation of an object volume. 
-The latter is represented by vertices (x-, y-, z-coordinates in the unit specified within the model's attributes) and triangles referencing three vertices each oriented with normals pointing towards the exterior of their object.\cite{3mf_consortium_3mf_2025}
-Meshes of different objects may intersect (as seen in the above mentioned example's case of wall loop modifiers) or self-intersect, in which case it must be specified which areas are inside or respectively outside the volume. 
-
-A so-called PrintTicket can be attached to each 3D model part detailing user intent and device configuration information for printers. This might be useful for the intended purpose of print hints but has not been further pursued as an idea due to the way, the file is being handled in \textit{OrcaSlicer}.
-
-In regards to adding print hints directly to the model's xml structure, it shall be noted that in accordance with the specification ``XML content MUST NOT contain elements or attributes drawn from the "xml" or "xsi" namespaces unless they are explicitly defined in the XSD schema or by other means in the specification.''\cite{3mf_consortium_3mf_2025}
 
 \section{Workflow using Autodesk Fusion and OrcaSlicer}
 
