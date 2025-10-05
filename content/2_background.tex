@@ -11,9 +11,7 @@ beginning the inquiry\dots
 
 \section{State-of-the-art Workflow}
 
-using the model from chap 1 as an example 
-
-from 3d modeling to evaluation $\rightarrow$ general, no specific software or file formats
+Let's take a detailed look on the general workflow as described in the previous chapter, further using the 3D model \ref{simple-3d-model-box} as an example.
 
 \begin{figure}[h]
     \centering
@@ -22,58 +20,93 @@ from 3d modeling to evaluation $\rightarrow$ general, no specific software or fi
     \label{workflow}
 \end{figure}
 
-When analyzing the process from idea to final result, several main steps can be identified as shown in \ref{workflow}. 
-``[Y]ou need to create or acquire a 3D computer-aided design (CAD) model, slice this model into layers and generate the commands needed to physically create the model, and, finally, physically create the print.''\cite[p.~52]{horvath_mastering_2018}
+\begin{enumerate}
+    \item 3D Model
+    
+    After coming up with an idea, the user either creates the 3D model from scratch or downloads one from the various databases available online and optionally modifies it. 
+    Creating and modifying a model requires highly domain-specific knowledge and skills.
+    While there is a lot of educational content in the form of videos, written tutorials and documentation for every level of expertise easily available, especially for newcomers it takes a lot of practice, effort and time to reach a level where the design will come close to their desired outcome.
+    \item Print Setup 
+    
+    As the next step, they have to choose the printing material (called filament) for different parts, \eg printing the box itself in white PLA and the text in a different color PLA, and set at the very least the temperature according to the materials specifications in case they differ from the presets used. 
+    Oftentimes further parameters or presets are needed to determine factors like supports\footnote{\todo definition}, infill, speed and heating bed temperature. % does it make more sense to explain these terms in the text or in footnotes?
+    In this case, the green boxes around the closures need to be marked as modifiers to increase the wall loops in the main model for added stability. 
+    Furthermore the box is designed to be printed as two separate bodies, one for the top and the bottom each, which means the top including all its text bodies have to be placed on the printing bed accordingly. 
+    \item Slicing 
+    
+    The model then has to be translated into layer-by-layer instructions for the printer. 
+    \item Printing 
+    
+    After inserting the chosen materials into the printer and optionally calibrating, the model can be printed. 
+    \item Evaluation
+    
+    Especially for newcomers and casual makers, the print might not turn out perfect on the first try. 
+    Therefore the print has to be evaluated for design flaws or printing errors. 
+    This often leads to revisions in the 3D model itself or the print setup, starting a new iteration of the workflow. 
+\end{enumerate}
 
-two parts requiring highly specific knowledge: 3d modeling and setting the model up to print 
-
-as previously mentioned, repetitive manual steps are necessary during the slicer setup when considering the following three aspects 
+Ergo, two parts of the process require a lot of highly specific knowledge: 3d modeling and setting the model up to print. 
+In particular in regards to the iterative nature of the process, a few repetitive steps can be identified considering the following aspects.
 
 \begin{enumerate}
-    \item Using multiple materials (e.g. printing the text in a different color)
-    \item Using model parts as modifiers (e.g. the translucent green boxes as modifiers to print more wall loops in the closure's area for higher stability)
-    \item A model consisting of multiple parts, some of which are not positioned on the surface they need to be printed on (e.g. the lid)
+    \item Using multiple materials (e.g. printing the text in a different color): In each iteration the user has to apply the material presets to the various printed parts, which can become tedious and lead to mistakes when the project becomes more complex. 
+    \item Using model parts as modifiers (e.g. the translucent green boxes as modifiers to print more wall loops in the closure's area for higher stability): Equivalent to the aspect above, the modifiers have to be set in each iteration. 
+    Unfortunately presets can't always be used for this step, resulting in even more need to document and apply settings. 
+    % \item A model consisting of multiple parts, some of which are not positioned on the surface they need to be printed on (e.g. the lid): While the slicer offers a functionality to automatically place all parts (or objects? \todo fact check) on their optimal surface to print on, this does not \colorbox{orange}{beruecksichtigen} several parts needing to stay in the same \colorbox{orange}{verhaeltnis zueinander} like the lid with its text, of which each letter is a separate body.
 \end{enumerate} 
 
 \section{3D Modeling Software}
 
-when realizing an idea from scratch, rather than downloading an available model online and modifying it, the user would create their own model using 3D modeling software
+\todo sources \& content
 
-this software is used to transform an idea or a 2d sketch into a 3D solid or surface representation, meaning that it describes the external geometry fully [additive manufacturing technology]
+Realizing an idea from scratch, rather than downloading an available model online and modifying it, the user would create their model using 3D modeling software.
+This software is used to transform an idea or a 2d sketch into a 3D solid or surface representation, meaning that it describes the external geometry fully. [additive manufacturing technology]
 
-difference between modeling for digital target (only surface) vs. physical / manufacturing targeted (volumes, closure of surface)
+An important distinction to make when considering 3D modeling software is the target medium. 
+Software targeting digital end products generally handle 3D models mainly based on surfaces, while software made for creating manufacturing models also take into consideration the volumes and the closure of the model's surface. 
+Even though the latter often provides functionalities for processes such as computer-aided manufacturing and simulating physical properties as well, the computer-aided design (CAD) aspect is the only one relevant to the workflow at hand. 
 
-$\rightarrow$ let's focus on manufacturing targeted 3D modeling
+As such, modeling software for manufacturing purposes bases its models on precise measurements, often starting from 2D sketches with rigid constraints regarding measuring units, angles and positioning in relation to other model parts. 
+These sketches are then extruded, cut or otherwise manipulated, thus creating three dimensional volumes.
 
-while they often provide functionalities for several different processes, computer-aided design (CAD) is the most relevant at hand 
-
-modeling software targeted for digital products, like animation, focuses on positioning and forming models or parts thereof by sight 
-
-modeling software for manufacturing purposes on the other hand is built on precise measurements, often starting from one or more 2d sketches and then extruding and cutting parts based off of these sketches 
-
-the final result can be described either by a consecutive order of instructions or by a polygonal structure \todo fact check 
-
-what is it 
-
-how does it represent 3D models 
+Depending on the specific software, the final result is described either by a consecutive order of instructions or by a polygonal structure. \todo fact check \& add more info about representation
 
 \section{Slicer}
 
-``The key to how AM\footnote{Additive Manufacturing} works is that parts are made by adding material in layers; each layer is a thin cross-section of the part derived from the original CAD data.''[Additive Manufacturing Technologies]
+Steps 2 and 3 of the workflow described above, are done with so-called slicer software.
+The name originates from its main task of slicing a 3D model into printable layers, since ``the key to how [additive manufacturing]\footnote{\todo explain term `AM'} works is that parts are made by adding material in layers; each layer is a thin cross-section of the part derived from the original CAD data.''[Additive Manufacturing Technologies]
+While it does offer some basic functionalities to create 3D models as well, its focus lies in setting up a finished model for printing and translating the data represented as described above into instructions for a specific target printer to follow. \cite{hudson_understanding_2016}
 
-what is it 
+Slicers are capable of importing 3D models in various different representations and transforming them to the slicer's preferred format. 
+Visually the model's parts are placed on a virtual representation of the printer's heating bed, which is the surface that a model is printed upon. 
+Since printers have different dimension, the heating bed as well as the available height need to be available to the slicer for proper setup. 
+Users have the option of setting this up manually, however more commonly the slicer accesses a list of printers, oftentimes from various manufacturers, for the user to select one from. 
+These dimensions are important to arrange parts in an efficient way to print, in case the model consists of multiple parts.
 
-how does it represent 3D models 
+The software also provides a selection of generic and manufacturer specific filament presets containing specifications such as the filament's name and material, recommended printing and heating bed temperature, and printing speed. 
 
-Slicer software on the other hand imports a 3D model and ``slices [it] into layers for the printer [...] allow[ing] users to select print settings, such as layer height and print speed''\cite{hudson_understanding_2016}
-It therefore translates the model into step-by-step commands for a specific printer.
-There are many different slicers available online nowadays, either general ones or ones specific to printer manufacturers. Since ``getting all the settings right for a particular 3D printer can be fiddly, a lot of manufacturers modify one of these open source programs and create a proprietary program just for their machine.''\cite[p.~58]{horvath_mastering_2018}
+
+manage default and user defined filament presets and apply them to the model's parts $\rightarrow$ filament settings incl. printing temperature (nozzle), temperature of heating bed, printing speed as well as some more involved specifications like cooling settings when using the filament and tool change parameters for multicolor usage
+
+some settings can be applied globally (for all parts equally) or per part, like quality related parameters (layer height, line width, precision, bridging), some relating to the model's strength (wall loops, top \& bottom shells, infill), supports (type, thresholds)
+add supports, infill (type and amount)
+
+the model with all its settings is then, as the name suggests, sliced into layers, which are translated into paths for the printer to follow 
+
+how does it represent 3D models $\rightarrow$ first as a project to save for future modifying and secondly to transfer printable data to the printing device 
+
+
+There are many different slicers available online nowadays, either general ones or ones specific to printer manufacturers. 
+Since getting all the settings right for a particular 3D printer can be difficult, some manufacturers prefer to modify one of the open source programs, creating a version just for their machine.\cite[p.~58]{horvath_mastering_2018} 
+Thus, most of the commonly used slicers today are based on the same code base, derived from an ancestor called Slic3r. 
+
+manage printers $\rightarrow$ even slicers provided by printer manufacturers often provide support for printers from other companies 
 
 and how most slicers available today are somewhat related 
 
 \section{File Formats used in 3D Printing Context}
 
-explanation of file formats in approximately the same depth each 
+explanation of file formats in approximately the same depth each $\rightarrow$ how old, what does it contain
 
 \subsection{STL}
 
@@ -224,3 +257,5 @@ As criticized in the \textit{OrcaSlicer Issue \#7769}\footnote{Copy/paste per-ob
 ``CAM-based design tools have emerged where toolpaths are specified directly. This approach is contrasted with CAD-based tools which are based on geometric models [23]. CAM-based tools naturally shift focus to the machine and its settings. Prior work generates custom toolpaths using traditional CAD environments [20 , 21 ], code [ 25 , 54 , 62 ], hand-drawn sketches [23], and domain-specific abstractions [ 5 ].''[its not the shape]
 
 how do others solve the issue $\rightarrow$ focus on documentation [its not the shape]
+
+$\rightarrow$ maybe also refer to git issues here 

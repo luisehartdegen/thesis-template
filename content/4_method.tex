@@ -1,19 +1,25 @@
-\chapter{Method}\label{ch:method}
+\chapter{Technical Implementation}\label{ch:method}
 
-general explanation of how I solved this 
+\section{Code Analysis of 3MF Processing in OrcaSlicer}
 
-how does the workflow change $\rightarrow$ exemplary 3d model from before 
+how does orca slicer handle 3mf files on a code level 
 
-why 3mf 
+$\rightarrow$ read in xml lines and save them to model 
 
-implementation 
+$\rightarrow$ write colors to extruders consecutively using user presets (saved as json and smth else files) $\rightarrow$ why didn't it do that before? it used a standard grey color instead of the first user preset, didn't it? 
 
-\begin{itemize}
-    \item what changed
-    \item what does the file format look like now $\rightarrow$ how is the process of opening 3mf files in the slicer different now than before 
-    \item new user interface
-    \item what additional information is being transmitted / read in 
-\end{itemize}
+
+\section{Code Changes in OrcaSlicer}
+
+first step: fix reading in the model's colors correctly $\rightarrow$ after in depth analysis I noticed that it does read in the color, but always used the last color per colorgroup tag $\Rightarrow$ since Fusion adds a grey material to all colorgroups this caused OrcaSlicer to overwrite the user's color choice 
+
+next step: adding a new user interface inspired by the color mapping dialog for OBJ files with the addition of a dropdown selection field for modifiers instead of filaments
+
+also: saving the mapping as applied in said interface to a file similar to user filament presets 
+
+
+
+
 
 The task of setting printing parameters is by nature a complex one, due to the many different printers, materials and project-specific needs out there. 
 To recap briefly, the intention is not to reduce that complexity in and of itself, but to reduce the need to remember and repeatedly apply those settings. 

@@ -18,22 +18,21 @@ It is from this community that the so-called \textit{makerspaces} emerged.
 These are spaces that provide affordable access to digital fabrication tools and act as knowledge hubs, often with financial support from their users.
 
 Since then, there has been a considerable enhancement in the usability and automation of 3D printers,  thereby rendering the technology more accessible to casual users. 
-As was the case with programming in previous decades, 3D printing has found it's way into education to teach various skills, including design, engineering and project management. 
+As was the case with programming in previous decades, 3D printing has found its way into education to teach various skills, including design, engineering and project management. 
 ``An additional benefit of digital fabrication is that it accelerates the processes of ideation and invention. It eliminates manual dexterity as the ‘middleman’ in transforming an idea into a product, so students can focus their attention on improving the design rather than taking care of mundane issues with the materials – and many more cycles of redesign are possible in the same time interval.''[FabLab of Machines Maker]
 
+% continue: deepl analysis
 Nowadays 3D printers are oftentimes available in schools and libraries as well, where the staff might not be as knowledgeable or well trained as in makerspaces.
 This leads to a more diversified user base in terms of knowledge, intent to learn and focus on technology versus a means to an end, \ie the final result. 
 
-Despite these differences, the workflow from idea to finished product generally consists of the same steps across the board.
-Using a simple box with a snap-fit closure and multiple filament colors as an example, the workflow would be as follows.\cite{hudson_understanding_2016} 
-
-\begin{enumerate}
-    \item 3D Model: After coming up with an idea, the user either creates the 3D model from scratch or downloads one from the various databases available online and optionally modifies it. 
-    \item Print Setup: They have to choose the printing material for the different parts, \eg printing the box itself in white PLA and the text in a different color PLA, and set at the very least the temperature according to the materials specifications. Oftentimes further parameters or presets are needed to determine factors like supports\footnote{\todo definition}, infill, speed and heating bed temperature. In this case, the green boxes around the closure would have to be marked as modifiers to increase the wall loops in the main model for added stability. The box is designed to be printed as two separate bodies, one for the top and the bottom each, which means the top has to be accordingly placed on the printing bed. 
-    \item Slicing: The model then has to be translated into layer-by-layer instructions for the printer. 
-    \item Printing: After inserting the chosen materials into the printer and optionally calibrating, the model can be printed. 
-    \item Evaluation: Especially for newcomers and casual makers, the print might not turn out perfect on the first try. Therefore the print has to be evaluated for design flaws or printing errors. This often leads to revisions in the model itself or the print setup, starting a new iteration of the workflow. 
-\end{enumerate}
+Despite these differences, several main steps can be identified in the workflow from idea to finished product, that generally consists of the same steps across the board.
+Using a simple box with a snap-fit closure and multiple material colors as an example, the workflow generally could look like this: 
+Upon coming up with an idea, the user designs a 3D model using computer-aided design software. 
+Setting it up for printing, they choose different materials for the box and the text and apply parameters for the specific materials in use in case they differ from the presets.
+They then use the green boxes as modifiers to increase the amount of wall loops for more stability, before having the software translate the 3D model into printer-specific instructions. 
+After physically setting up the printer, the print is started and will result in a physical product. 
+This product might not conform exactly to the user's intended result, hence the product needs to be evaluated and the results thereof mirrored back into the process above, \ie changing the model itself or refining the printing parameters.\cite[p.~52]{horvath_mastering_2018}
+This results in an iterative process with some repetitive steps requiring the user to manually document or remember highly specific parameters.
 
 \begin{wrapfigure}[11]{r}{0.4\linewidth}
     \vspace{-10pt}
@@ -57,7 +56,7 @@ Partly slicer software provides an option to save settings in the form of user p
 
 Focusing on the connection between parts of the model and applied settings, the solution presented in this paper analyses the feasibility of the use of `print hints' early on in the process to improve the interdependency of modeling and slicer software and the overall user experience. 
 Print hints are markers, added to the model during the 3D modeling phase that the slicer can process semi-automatically. 
-The idea is to offer the user the option to map the markers to their own filament or modifier presets while simultaneously saving the resulting mapping upon importing the model to the slicer. 
+The idea is to offer the user the option to map the markers to their own material or modifier presets while simultaneously saving the resulting mapping upon importing the model to the slicer. 
 Thus if the same maker is reused in a new iteration or even a new model, the interface can apply the mapped preset while still giving the user the option to change it. 
 
 The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for users.
