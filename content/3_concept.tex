@@ -1,18 +1,65 @@
 \chapter{Concept}\label{ch:concept}
 
+In practical additive manufacturing workflows, especially within iterative design processes, maintaining consistency and traceability of printing parameters across multiple model revisions presents a recurring challenge. 
+As mentioned before, designers often need to adjust filament and printing parameters as well as modifiers between print iterations. 
+However, these configurations are typically defined and stored within the slicer software rather than the modelling environment. 
+As a result, when models are modified and re-exported, relevant printing information is easily lost or must be manually reconstructed.
 
-general explanation of how I solved this 
+This separation between modelling and slicing environments can lead to inefficiencies, particularly in projects that require several iterations, complex geometries, or multiple materials. 
+Without a systematic method for documenting and reusing printing parameters directly within the model, users are forced to rely on external notes or memory, which increases the likelihood of inconsistency and error.
 
-\section{Adding Print Hints in Autodesk Fusion}
+\section{Design Requirements}
+Observing this problem motivated the project to improve the integration between 3D modelling and slicing workflows by enabling the storage and transfer of essential printing information alongside the model itself as print hints.
+The underlying goal is to enhance usability, reproducibility, and workflow efficiency without introducing additional software complexity or disrupting established design practices. 
+Thus the following requirements were identified.
 
-using Fusion's native appearance as a proof of concept to keep it simple 
+\begin{enumerate}
+  \item The solution should integrate seamlessly into the existing modelling workflow without requiring additional software installations or complex documentation procedures.
+  \item It maintains user flexibility to refine parameters iteratively, acknowledging that printing quality depends both on the model geometry and the chosen print settings.
+  \item It supports portability and long-term accessibility of the parameter data using existing file standards.
+\end{enumerate}
 
-pro: users can create their own library of appearances to use in various projects which makes it easy to have consistent mapping of Fusion appearance to OrcaSlicer filament preset
+\section{Concept Development}
 
-\section{3MF as Preferred File Format}
+The initial concept involved creating a custom add-in for \textit{Fusion} that would allow users to manually attach print hints to parts of the model. 
+However, this approach contradicted the primary design goals of simplicity and minimal workflow disruption. 
+The requirement for additional software installation and maintenance represented an unnecessary barrier for users.
 
-it provides a lot of options by default but is also open to expansion $\rightarrow$ get some content from chap 2 
+To overcome these limitations, the idea evolved toward adopting native functionality within \textit{Fusion} — specifically, the use of appearances. 
+Appearances in Fusion are visual attributes that define colour, opacity, and reflectivity without influencing the physical material properties or simulation behaviour. 
+In addition to being fully integrated into Fusion’s native environment, appearances are also automatically stored within the project file, and easily managed through user-defined libraries that can be stored across separate projects.
 
-plus: OrcaSlicer saves all projects as 3mf by default % todo: fact check + is this an actual argument???
+By repurposing appearances as carriers of print hint information, users could assign distinct visual markers to model components, corresponding to specific printing or filament presets. 
+This method meets the objectives of low technical overhead and ease of use, while at the same time utilising existing mechanisms for data persistence and portability.
 
-what changes in the 3mf file $\rightarrow$ nothing, but in a future implementation it might be possible to add more print hints / hints not depending on specific cad software 
+
+\section{File Format Considerations}
+
+In order to meet the aforementioned requirements, it is necessary to export the print hints together with the model. 
+The STL format was disregarded on account of the limited information it encodes, as outlined in \ref{chap:stl}. 
+Thus, OBJ and 3MF were considered as potential candidates, since both have the ability to represent material data. 
+
+Following a detailed evaluation, 3MF was determined to be the more suitable option for this project. 
+A key factor is its ability to natively embed material information within a single, self-contained file structure, in contrast to OBJ, which utilises a separate material library file.
+Consequently, this complicates data management and increases the risk of information loss or inconsistencies during file transfer. 
+Moreover, 3MF’s open and extensible architecture allows for future integration of additional print hints.
+Its human-readable XML-based format further supports transparency and verifiability throughout the development process, facilitating both debugging and documentation.
+Collectively, these characteristics make 3MF the more robust and forward-compatible choice for representing models enriched with print-related metadata.
+
+
+\section{User Interaction}
+
+To complement the embedding of print hints in the model, an import dialog was envisioned for the slicer application. 
+The design was inspired by existing implementations such as \textit{OrcaSlicer}’s handling of OBJ imports, where users can map model colours to filament presets.
+
+In the proposed approach, this dialog would be extended to allow:
+
+\begin{itemize}
+  \item Mapping of model appearances to both filament and printing presets,
+  \item Immediate designation of bodies as modifiers, and
+  \item Creation or selection of presets directly from the interface.
+\end{itemize}
+
+Upon initial use, the user could select default or newly created presets. 
+When the same appearance (colour) is encountered in future imports, the system would reference a configuration file to suggest previously associated presets automatically. 
+This mechanism reduces repetitive configuration tasks while preserving user control and flexibility for iterative refinement.

@@ -1,19 +1,30 @@
 \chapter{Results}\label{ch:results}
 
-\begin{itemize}
-    \item what does the optimized workflow look like? $\rightarrow$ example 
-    \item why is the solution good? $\rightarrow$ expert interviews 
+The implementation process primarily focused on validating the conceptual feasibility of integrating print hints into the 3D modelling and slicing workflow. 
+While substantial progress was made in analysing the 3MF structure and adapting OrcaSlicer’s import mechanism, the practical implementation was limited in scope due to the complexity of the existing code base and time constraints.
 
-    \begin{itemize}
-        \item how are the results analysed / validated? 
-        \item openly available $\rightarrow$ advantages of that 
-        \item but: it is a proof of concept / prototype and thus will most likely not be the end of the story
-    \end{itemize}
+The project successfully demonstrated that appearance-based print metadata can be extracted from Fusion's 3MF exports, interpreted, and displayed in OrcaSlicer. 
+The implemented modifications to the import logic confirmed that colour information, once properly parsed, can serve as a viable medium for associating model components with specific filament presets or other printing parameters.
+
+Furthermore, the exploratory work yielded a clearer understanding of how Fusion’s colour representation functions internally and how OrcaSlicer manages its data structures during model import. 
+These insights establish an important technical foundation for extending slicer software to interpret embedded model metadata more effectively.
+
+Despite the conceptual success, several limitations remain. 
+Most notably, the precise rationale behind OrcaSlicer’s original behaviour — saving the last rather than the first colour per group — requires further investigation, as altering this mechanism might inadvertently affect other functionalities dependent on that logic.
+
+Additionally, aspects such as test coverage, code modularity, and localisation were not comprehensively addressed, primarily due to the exploratory nature of this work. 
+A systematic testing strategy and internationalisation support would be essential prerequisites before any potential integration into the main code base could be proposed.
+
+\section{Planned Work}
+
+Building upon the achieved results, the next steps for development would include:
+
+\begin{itemize}
+    \item Comprehensive verification of the modified 3MF import process to ensure compatibility with all supported features and file variations.
+    \item Implementation of persistent preset management, allowing users to automatically reapply previously associated print or filament presets during subsequent imports.
+    \item Extension of the user interface, enabling the creation, selection, and modification of presets directly within the import dialog.
+    \item Definition of a configuration schema for storing colour–preset associations to facilitate reproducibility and long-term usability.
 \end{itemize}
 
-\section{Outlook}
-\begin{itemize}
-    \item communication with OrcaSlicer's owner softfever? 
-    \item option of code being pulled into other slicers 
-    \item what is left to do? 
-\end{itemize}
+In a more advanced development stage, the project could be presented to the \textit{OrcaSlicer} developer community for peer review and potential integration into the main repository. Such collaboration would also ensure adherence to the project’s coding conventions and user experience guidelines.
+

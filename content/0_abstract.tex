@@ -2,19 +2,21 @@
 \section*{Abstract}
 \label{sec:abstract}
 
-\todo shorter motivation, more focus on realized solution; keep it general $\rightarrow$ don't mention 3MF, OrcaSlicer, Fusion 
+With the increasing accessibility of consumer-grade 3D printers, an ever-growing number of users are engaging in designing and fabricating their own models. 
+Despite this trend, the transition from digital model to printed object still involves several steps that require technical knowledge and repetitive manual configuration. 
+In particular, defining and reapplying material and printing parameters across multiple design iterations often results in redundant effort and increased potential for error.
 
-With the rising popularity and easier access to 3D printers, more and more people are interested in designing and printing their own models. 
-There are however still a few steps involved that require domain specific knowledge, oftentimes creating a discrepancy between the wanted outcome and reality. 
-Preparing a 3D model for printing requires the user to apply material presets and printing parameters after importing the model to a slicer software. 
-Doing this once is a logical and necessary step, but when creating a 3D model from scratch or changing one, it might take several iterations until the result matches the desired outcome.
-Thus the user has to repeatedly apply the aforementioned settings and therefore they have to remember them or write them down which creates friction in the workflow. 
-Not only does this increase cognitive workload, leading to a higher frequency of errors and thus produces waste, it also often leads to frustration in beginner or casual makers. 
-The solution presented in this paper are so-called print hints added in the 3D modeling software itself, in the proof of concept realized using Fusion appearances. 
-Upon opening a 3MF file in OrcaSlicer, the appearances are mapped to either material presets or modifiers. 
-By giving the user the option to map manually while also saving and loading previous mappings, the solution provides an automation of the criticized workflow while keeping the freedom to easily change an entire group of objects in one simple step. 
+To address this issue, the presented concept introduces the idea of `print hints' embedded directly within the 3D model to retain information about relevant printing parameters. 
+These hints enable a more seamless workflow by linking model components to specific presets and allowing for automatic or semi-automatic reassignment of parameters during the import into slicer software. 
+This approach reduces cognitive load, minimises repetitive tasks, and supports a more efficient and user-friendly iterative design process, while preserving user control and flexibility. 
 
 \section*{Kurzdarstellung}
 \label{sec:kurzdarstellung}
 
-\todo translation
+Mit der zunehmenden Verf\"ugbarkeit von 3D-Druckern f\"ur Endverbraucher besch\"aftigt sich auch eine stetig wachsende Zahl von Nutzer*innen mit dem Entwurf und der Herstellung eigener Modelle.
+Trotz dieses Trends umfasst der Prozess vom digitalen Modell zum gedruckten Objekt weiterhin mehrere Schritte, die hohes technisches Wissen und wiederholte manuelle Konfiguration erfordern.
+Insbesondere das Definieren und Anwenden von Material- und Druckparametern \"uber mehrere Designiterationen hinweg f\"uhrt h\"aufig zu redundantem Aufwand und einer erh\"ohten Fehleranf\"alligkeit.
+
+Um dieses Problem zu adressieren, f\"uhrt das vorgestellte Konzept sogenannte ``Print Hints'' ein, die direkt im 3D-Modell eingebettet werden, um eine Zuordnung zu relevanten Druckparametern zu speichern.
+Diese Hinweise erm\"oglichen einen nahtloseren Arbeitsablauf, indem sie Modellkomponenten mit spezifischen Voreinstellungen verkn\"upfen und eine automatische oder halbautomatische Zuweisung von Parameter-Voreinstellungen beim Import in die Slicer-Software erlauben.
+Der Ansatz reduziert die kognitive Belastung, minimiert wiederkehrende Aufgaben und unterst\"utzt einen effizienteren und benutzerfreundlicheren iterativen Designprozess, w\"ahrend gleichzeitig die Kontrolle und Flexibilit\"at der Nutzer*innen erhalten bleibt.

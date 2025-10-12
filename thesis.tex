@@ -66,6 +66,7 @@
 \usepackage{pdfpages}
 \usepackage{dirtree}
 \usepackage{wrapfig}
+\usepackage{doi}
 
 % table setup
 \usepackage{longtable}
@@ -134,10 +135,6 @@
 \newcommand{\etal}{\mbox{\emph{et\,al.\ }}}
 \renewcommand{\todo}{\mbox{\textcolor{ForestGreen}{//TODO\ }}}
 
-
-% TODO remove if not needed...
-\usepackage{blindtext}
-
 % load glossary entries
 \makenoidxglossaries
 \loadglsentries{glossary}
@@ -174,15 +171,15 @@
 \listoffigures
 \cleardoublepage
 
-\listoftables
-\cleardoublepage
+% \listoftables
+% \cleardoublepage
 
 \renewcommand{\lstlistlistingname}{List of Listings}  % change for German thesis
 \lstlistoflistings
 \cleardoublepage
 
 \nocite{*}
-\bibliographystyle{IEEEtran}
+\bibliographystyle{IEEEtranDOIandURLwithDate}
 \bibliography{refs}
 
 \printnoidxglossaries

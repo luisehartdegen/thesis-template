@@ -6,58 +6,59 @@
 \end{quote}
 
 Recent years have seen a rising popularity of digital fabrication within the hobbyist or so-called maker community, as well as in educational and professional settings. 
-This growth can be attributed to the increasing availability of devices such as 3D printers, CNC milling machines and laser cutters in public spaces, along with the declining cost of these devices for end-users. 
-% todo: source
+This growth can be attributed to the increasing availability of devices such as 3D printers and laser cutters in public spaces, along with the declining cost of these devices for end-users.\cite{yan_make_2025} 
 
-``Like traditional printers they bridge the realms of the digital and the physical by transforming digital designs into physical artifacts. While traditional printing results in a representation of text or graphics on paper, 3D printers make use of filament to build a three-dimensional artifact layer by layer.''[Machine Sensibility]
-
+Similar to traditional printers, 3D printers serve as a bridge between the digital and the physical, transforming virtual designs into tangible objects. 
+Unlike conventional printing, which produces two-dimensional images or text on paper, additive manufacturing (AM) creates three-dimensional artifacts by depositing material layer by layer.\cite{landwehr_sydow_machine_2020} 
 The applications of this technology are diverse, ranging from toys to household items, from replacements components to artistic creations, from educational models to prototypes for mass manufacturing, and ultimately to finished products in the emerging market of customised mass production, exemplified by websites such as \textit{Thingiverse.com}, where users can upload their 3D models. 
 
 Initially, when the technology became widely available, the user base consisted primarily of individuals who were not only interested in the final result, but also demonstrated a keen interest in the technology itself and the process of creating models and setting up the printer. 
 It is from this community that the so-called \textit{makerspaces} emerged.
-These are spaces that provide affordable access to digital fabrication tools and act as knowledge hubs, often with financial support from their users.
+These are spaces that provide affordable access to digital fabrication tools and act as knowledge hubs, often with financial support from their users.\cite{hudson_understanding_2016}
 
-Since then, there has been a considerable enhancement in the usability and automation of 3D printers\footnote{The term ``3D printers'' used in this paper specifically refers to smaller desktop machines that use Fused Filament Fabrication (FFF) / Fused Deposition Modeling (FDM) technology},  thereby rendering the technology more accessible to casual users. 
-As was the case with programming in previous decades, 3D printing has found its way into education to teach various skills, including design, engineering and project management. 
-``An additional benefit of digital fabrication is that it accelerates the processes of ideation and invention. It eliminates manual dexterity as the ‘middleman’ in transforming an idea into a product, so students can focus their attention on improving the design rather than taking care of mundane issues with the materials – and many more cycles of redesign are possible in the same time interval.''[FabLab of Machines Maker]
+As usability and automation have advanced, 3D printers\footnote{The term ``3D printers'' used in this paper specifically refers to smaller desktop machines that use Fused Filament Fabrication (FFF) / Fused Deposition Modeling (FDM) technology} have become increasingly accessible to casual users. 
+This has facilitated their integration into educational contexts, where they serve as tools for teaching skills such as design, engineering, and project management. 
+As Walter-Herrmann and B\"uching note, digital fabrication ``accelerates the processes of ideation and invention. It eliminates manual dexterity as the ‘middleman’ in transforming an idea into a product, so students can focus their attention on improving the design rather than taking care of mundane issues with the materials''\cite[p.~209]{walter-herrmann_fablab_2014}. 
+Consequently, 3D printing enables faster iteration and experimentation in design-oriented learning environments.
 
-% continue: deepl analysis
-Nowadays 3D printers are oftentimes available in schools and libraries as well, where the staff might not be as knowledgeable or well trained as in makerspaces.
-This leads to a more diversified user base in terms of knowledge, intent to learn and focus on technology versus a means to an end, \ie the final result. 
+Nowadays, 3D printers are frequently available in schools, libraries, and community spaces, where staff may not possess the same level of technical expertise as those in dedicated makerspaces. 
+This shift has led to a more heterogeneous user base, differing in technical knowledge, learning intent, and focus on the underlying technology versus the final product. 
+Despite these differences, the general workflow from idea to finished object follows a consistent pattern.
 
-Despite these differences, several main steps can be identified in the workflow from idea to finished product, that generally consists of the same steps across the board.
-Using a simple box with a snap-fit closure and multiple material colors as an example, the workflow generally could look like this: 
-Upon coming up with an idea, the user designs a 3D model using computer-aided design software. 
-Setting it up for printing, they choose different materials for the box and the text and apply parameters for the specific materials in use in case they differ from the presets.
-They then use the green boxes as modifiers to increase the amount of wall loops for more stability, before having the software translate the 3D model into printer-specific instructions. 
-After physically setting up the printer, the print is started and will result in a physical product. 
-This product might not conform exactly to the user's intended result, hence the product needs to be evaluated and the results thereof mirrored back into the process above, \ie changing the model itself or refining the printing parameters.\cite[p.~52]{horvath_mastering_2018}
-This results in an iterative process with some repetitive steps requiring the user to manually document or remember highly specific parameters.
-
-\begin{wrapfigure}[11]{r}{0.4\linewidth}
+\begin{wrapfigure}[16]{r}{0.6\linewidth}
     \vspace{-10pt}
     \includegraphics[width=\linewidth]{3dmodel_box.png}
-    \caption{3D model as example}
-    \label{simple-3d-model-box}
+    \caption{3D model of snap-fit closure box as example. A: Top. B: Bottom. C: Integrated text to be printed in different colour. \\ D: Closure with surrounding modifier.}
+    \label{fig:simple-3d-model-box}
 \end{wrapfigure}
 
-Due to the highly specific use cases and quite different requirements, a ``standard 3D printing workflow [...] requires disparate pieces of software, which then leave behind only a fragmented record of the fabrication process. CAD models are stored and shared as static geometry files. Separately, operators can tweak relevant settings in CAM software called a slicer, which can then be saved as a slicing profile.''[its not the shape]
+Using the example of a simple box with a snap-fit closure and multiple material colours (\ref{fig:simple-3d-model-box}), this process typically looks as follows: 
+after coming up with an idea, a user first develops a digital 3D model using computer-aided design (CAD) software. 
+They then assign materials, adjust printing parameters, and apply modifiers to influence specific properties — such as increasing wall thickness for greater structural integrity — before converting the model into printer-specific instructions. 
+Following the physical setup of the printer, the object is produced layer by layer. 
+The resulting artefact is subsequently evaluated and compared with the intended outcome, informing adjustments either to the model or the printing parameters for subsequent iterations\cite[p.~52]{horvath_mastering_2018}. 
+This iterative process often involves repetitive steps that require users to manually document or recall detailed settings, introducing inefficiencies and potential for error.
 
-With a wider and more diverse user base, discussions about how to streamline the process, lower hurdles and simplify the sometimes rather complex steps involved have increased in the scientific HCI\footnote{human-computer interaction} community.\cite{hudson_understanding_2016} % todo: more sources! 
-Even though the technology itself improved in regards to usability and maintainability, the skills required to operate a 3D printer remain high. [PrintAssist]
+Due to the highly specific use cases and differing requirements, a ``standard 3D printing workflow [...] requires disparate pieces of software, which then leave behind only a fragmented record of the fabrication process. CAD models are stored and shared as static geometry files. Separately, operators can tweak relevant settings in CAM software called a slicer, which can then be saved as a slicing profile.''\cite{subbaraman_shape_2025}
 
-Various different approaches have been documented to tackle this problem, ranging from easier 3D modeling software, improved process documentation[its not the shape] or even chatbots as human-machine interfaces. [PrintAssist]
-``[C]urrent tools that focus on supporting only one aspect of the workflow (\emph{\eg}, only modelling or only printing) may be less useful for casual makers and there is opportunity in HCI research to innovate on design tools that take into account the interdependencies within the 3D printing workflow''\cite{hudson_understanding_2016} \todo check if still up-to-date / relevant 
+The expanding and diversifying user base has prompted discussions within the academic human-computer interaction (HCI) community about how to streamline the process, lower hurdles and simplify the sometimes rather complex steps involved.
+Even though the technology itself improved in regards to usability and maintainability, the skills required to operate a 3D printer remain high.\cite{jasche_printassistconversational_2023}
 
-One such aspect concerns printing parameters and particularly the need for documentation either to be able to recreate the conditions or to get support with previous configurations in case something went wrong.
-To have consistent results when comparing different iterations of one's print, printing parameters shouldn't changed unless specifically identified as a problem. 
-This does however raise the need for users to either remember their settings or document them in some way, oftentimes outside of the software used.
-Partly slicer software provides an option to save settings in the form of user presets but as soon as the project becomes more complex, the user still has to remember or document which presets they used for which parts. [3D Printers as Sociable Technologies] % todo: check if the source actually says something like it 
+Various approaches have been proposed to address this challenge, ranging from simplified 3D modelling software\cite{buehler_abc_2014}, and alternative methods of process documentation\cite{subbaraman_shape_2025} to the use of conversational agents as human-machine interfaces.\cite{jasche_printassistconversational_2023}
+While these efforts contribute valuable insights, they typically focus on isolated segments of the fabrication workflow rather than on the seamless integration of multiple applications into a continuous process.
+Accordingly, there remains considerable potential within the field of HCI to enhance existing tools by considering the interdependencies among different stages of the workflow.
 
-Focusing on the connection between parts of the model and applied settings, the solution presented in this paper analyses the feasibility of the use of `print hints' early on in the process to improve the interdependency of modeling and slicer software and the overall user experience. 
-Print hints are markers, added to the model during the 3D modeling phase that the slicer can process semi-automatically. 
-The idea is to offer the user the option to map the markers to their own material or modifier presets while simultaneously saving the resulting mapping upon importing the model to the slicer. 
-Thus if the same maker is reused in a new iteration or even a new model, the interface can apply the mapped preset while still giving the user the option to change it. 
+One particularly relevant aspect concerns the management and documentation of printing parameters.
+Accurate documentation is essential for both reproducing successful results an diagnosing issues when they occur.
+To ensure consistency across iterations, printing parameters should remain unchanged unless they have been explicitly identified as a source of error.
+This requirement, however, necessitates that users either remember their settings or record them externally, often outside the software ecosystem in use.
+Although many slicer applications provide functionality to store user-defined presets, this feature becomes insufficient as project complexity increases, since users still need to track which presets were applied to which parts of a model.
+In this regard, the software currently exhibits a lack of granularity.
 
-The goal is to streamline the iterative design workflow by reducing the need to repeatedly configure the same printing parameters in each iteration, therefore lowering cognitive workload for users.
-The prototype presented in the following thesis focuses mainly on improving the workflow using already available options while simultaneously introducing a new user interface and consequently changed handling when opening the 3d model in the slicer.
+Focusing on the relationship between individual parts of the model and their associated printing parameters, this work examines the feasibility of the implementing `print hints' early in the design process to strengthen the integration between 3D modelling and slicing software, thereby enhancing the overall user experience. 
+Print hints are markers added to the 3D model during the modelling phase that the slicer can process semi-automatically. 
+The underlying concept is to allow users to associate these markers with their own material or printing presets while simultaneously storing the resulting mappings when the model is imported into the slicer.
+When the same marker is encountered in a subsequent iteration or within a new model, the system can automatically reapply the corresponding preset while still providing the user with the option to modify it.
+
+The overarching goal is to streamline the iterative design workflow by reducing the need to repeatedly configure identical printing parameters in each iteration, therefore lowering users' cognitive workload and potential for error.
+The prototype developed in this study primarily explores workflow improvements using existing software functionalities, complemented by a newly designed user interface and modified handling procedure during the model import stage in the slicer.
